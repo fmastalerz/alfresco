@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31d126c9-3256-4fbc-8103-e50d5dd2d39b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/HelloSelenium.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/LoginPageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hello.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Hello.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/HelloTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/HelloTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/HelloSelenium.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/HelloTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/HelloTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,12 +32,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/HelloSelenium.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/LoginPageTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+            <state relative-caret-position="261">
+              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#408#409#0" expanded="true" />
+                <element signature="e#450#451#0" expanded="true" />
+                <element signature="e#870#871#0" expanded="true" />
+                <element signature="e#898#899#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/pages/LoginPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#142#143#0" expanded="true" />
+                <element signature="e#178#179#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,6 +90,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/SeleniumTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/HelloSelenium.java" />
+        <option value="$PROJECT_DIR$/src/test/java/LoginPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SeleniumTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SetupSelenium.java" />
+        <option value="$PROJECT_DIR$/src/test/java/LoginPageTest.java" />
       </list>
     </option>
   </component>
@@ -124,6 +147,14 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="alfresco" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alfresco" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -166,7 +197,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HelloSelenium.seleniumTest">
+  <component name="RunManager" selected="JUnit.LoginPageTest">
     <configuration name="SeleniumTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SeleniumTest" />
       <module name="alfresco" />
@@ -174,40 +205,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloSelenium.seleniumTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="alfresco" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HelloSelenium" />
-      <option name="METHOD_NAME" value="seleniumTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HelloTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="alfresco" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HelloTest" />
+      <option name="MAIN_CLASS_NAME" value="LoginPageTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloTest.checkIfSayHello" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginPageTest.checkIfLoginDefaultUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="alfresco" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HelloTest" />
-      <option name="METHOD_NAME" value="checkIfSayHello" />
+      <option name="MAIN_CLASS_NAME" value="LoginPageTest" />
+      <option name="METHOD_NAME" value="checkIfLoginDefaultUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloTest.showIfItWorksProperly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginPageTest.seleniumTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="alfresco" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HelloTest" />
-      <option name="METHOD_NAME" value="showIfItWorksProperly" />
+      <option name="MAIN_CLASS_NAME" value="LoginPageTest" />
+      <option name="METHOD_NAME" value="seleniumTest2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeleniumTest.seleniumTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="alfresco" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SeleniumTest" />
+      <option name="METHOD_NAME" value="seleniumTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -215,11 +246,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HelloSelenium.seleniumTest" />
+        <item itemvalue="JUnit.LoginPageTest" />
+        <item itemvalue="JUnit.LoginPageTest.checkIfLoginDefaultUser" />
+        <item itemvalue="JUnit.LoginPageTest.seleniumTest2" />
+        <item itemvalue="JUnit.SeleniumTest.seleniumTest" />
         <item itemvalue="Application.SeleniumTest" />
-        <item itemvalue="JUnit.HelloTest" />
-        <item itemvalue="JUnit.HelloTest.showIfItWorksProperly" />
-        <item itemvalue="JUnit.HelloTest.checkIfSayHello" />
       </list>
     </recent_temporary>
   </component>
@@ -236,7 +267,7 @@
       <workItem from="1555497146164" duration="2409000" />
       <workItem from="1555501023536" duration="2321000" />
       <workItem from="1555507902185" duration="1117000" />
-      <workItem from="1555509231686" duration="8693000" />
+      <workItem from="1555509231686" duration="14085000" />
     </task>
     <task id="LOCAL-00001" summary="added dependencies to pom.xml">
       <created>1555575924661</created>
@@ -245,43 +276,50 @@
       <option name="project" value="LOCAL" />
       <updated>1555575924661</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="clean up dependencies; add HelloSelenium with Selenium Web Driver test">
+      <created>1555584048117</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1555584048117</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HelloTest - 2019.04.17 at 15h 28m 09s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium - 2019.04.18 at 14h 21m 46s.xml">
+      <configuration name="SetupSelenium" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 15h 34m 07s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium - 2019.04.18 at 14h 22m 09s.xml">
+      <configuration name="SetupSelenium" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloTest - 2019.04.18 at 09h 33m 46s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium - 2019.04.18 at 14h 22m 34s.xml">
+      <configuration name="SetupSelenium" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloTest - 2019.04.18 at 11h 25m 25s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium - 2019.04.18 at 14h 22m 58s.xml">
+      <configuration name="SetupSelenium" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 09m 21s.xml">
-      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium - 2019.04.18 at 14h 23m 44s.xml">
+      <configuration name="SetupSelenium" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 13m 43s.xml">
-      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium_seleniumTest2 - 2019.04.18 at 14h 36m 49s.xml">
+      <configuration name="SetupSelenium.seleniumTest2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 16m 55s.xml">
-      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium_seleniumTest - 2019.04.18 at 14h 43m 15s.xml">
+      <configuration name="SetupSelenium.seleniumTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 18m 19s.xml">
-      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    <history-entry file="SetupSelenium - 2019.04.18 at 14h 43m 59s.xml">
+      <configuration name="SetupSelenium" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 24m 56s.xml">
-      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    <history-entry file="LoginPageTest - 2019.04.18 at 14h 47m 23s.xml">
+      <configuration name="LoginPageTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 31m 27s.xml">
-      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    <history-entry file="LoginPageTest - 2019.04.18 at 14h 48m 03s.xml">
+      <configuration name="LoginPageTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14540000" />
+    <option name="totallyTimeSpent" value="19932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -324,7 +362,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added dependencies to pom.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dependencies to pom.xml" />
+    <MESSAGE value="clean up dependencies; add HelloSelenium with Selenium Web Driver test" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up dependencies; add HelloSelenium with Selenium Web Driver test" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/java/HelloTestTest.java" />
@@ -357,13 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SeleniumTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -374,12 +406,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/HelloSelenium.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/SeleniumTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        <state relative-caret-position="180">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/pages/LoginPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
+            <element signature="e#178#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/LoginPageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+            <element signature="e#450#451#0" expanded="true" />
+            <element signature="e#870#871#0" expanded="true" />
+            <element signature="e#898#899#0" expanded="true" />
           </folding>
         </state>
       </provider>
