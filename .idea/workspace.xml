@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31d126c9-3256-4fbc-8103-e50d5dd2d39b" name="Default Changelist" comment="" />
+    <list default="true" id="31d126c9-3256-4fbc-8103-e50d5dd2d39b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/HelloSelenium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hello.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Hello.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/HelloTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/HelloTest.class" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,17 +25,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+            <state relative-caret-position="618">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Hello.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/HelloSelenium.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="270">
+              <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,22 +49,29 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/test/java/HelloTestTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/HelloTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/Hello.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/SeleniumTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/HelloSelenium.java" />
       </list>
     </option>
   </component>
@@ -98,7 +115,13 @@
               <item name="alfresco" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfresco" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alfresco" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alfresco" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -118,6 +141,9 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -140,7 +166,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HelloTest">
+  <component name="RunManager" selected="JUnit.HelloSelenium.seleniumTest">
+    <configuration name="SeleniumTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SeleniumTest" />
+      <module name="alfresco" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloSelenium.seleniumTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="alfresco" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HelloSelenium" />
+      <option name="METHOD_NAME" value="seleniumTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HelloTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="alfresco" />
       <option name="PACKAGE_NAME" value="" />
@@ -172,6 +215,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HelloSelenium.seleniumTest" />
+        <item itemvalue="Application.SeleniumTest" />
         <item itemvalue="JUnit.HelloTest" />
         <item itemvalue="JUnit.HelloTest.showIfItWorksProperly" />
         <item itemvalue="JUnit.HelloTest.checkIfSayHello" />
@@ -191,32 +236,19 @@
       <workItem from="1555497146164" duration="2409000" />
       <workItem from="1555501023536" duration="2321000" />
       <workItem from="1555507902185" duration="1117000" />
-      <workItem from="1555509231686" duration="1406000" />
+      <workItem from="1555509231686" duration="8693000" />
     </task>
+    <task id="LOCAL-00001" summary="added dependencies to pom.xml">
+      <created>1555575924661</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555575924661</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HelloTest - 2019.04.17 at 13h 47m 37s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 13h 49m 22s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 13h 51m 49s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 13h 51m 59s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 13h 52m 23s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 13h 52m 49s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="HelloTest - 2019.04.17 at 13h 53m 19s.xml">
-      <configuration name="HelloTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="HelloTest - 2019.04.17 at 15h 28m 09s.xml">
       <configuration name="HelloTest" configurationId="JUnit" />
     </history-entry>
@@ -226,9 +258,30 @@
     <history-entry file="HelloTest - 2019.04.18 at 09h 33m 46s.xml">
       <configuration name="HelloTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="HelloTest - 2019.04.18 at 11h 25m 25s.xml">
+      <configuration name="HelloTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 09m 21s.xml">
+      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 13m 43s.xml">
+      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 16m 55s.xml">
+      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 18m 19s.xml">
+      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 24m 56s.xml">
+      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HelloSelenium_seleniumTest - 2019.04.18 at 12h 31m 27s.xml">
+      <configuration name="HelloSelenium.seleniumTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7253000" />
+    <option name="totallyTimeSpent" value="14540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -243,13 +296,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3299363" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3299363" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3299363" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3299363" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -269,6 +322,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added dependencies to pom.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="added dependencies to pom.xml" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/java/HelloTestTest.java" />
     <entry file="file://$PROJECT_DIR$/src/.gitignore">
@@ -276,8 +333,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+        <state relative-caret-position="265">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Hello.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -295,17 +359,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+        <state relative-caret-position="618">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Hello.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SeleniumTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="75">
+          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/HelloSelenium.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>alfresco</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.google.code.findbugs:jsr305:3.0.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
