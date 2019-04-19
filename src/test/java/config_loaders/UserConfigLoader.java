@@ -11,9 +11,10 @@ public class UserConfigLoader {
         properties = new Properties();
 
         try {
-            InputStream inputStream = new FileInputStream("/Users/fmastalerz/IdeaProjects/alfresco/src/main/resources/user.properties");
-            properties.load(inputStream);
+            String projectPath = System.getProperty("user.dir");
 
+            InputStream inputStream = new FileInputStream(projectPath + "/src/main/resources/user.properties");
+            properties.load(inputStream);
         } catch (Exception e) {
             e.printStackTrace();
         }

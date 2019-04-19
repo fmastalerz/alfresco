@@ -15,9 +15,10 @@ public class EnvironmentConfigLoader {
         properties = new Properties();
 
         try {
-            InputStream inputStream = new FileInputStream("/Users/fmastalerz/IdeaProjects/alfresco/src/main/resources/environment.properties");
-            properties.load(inputStream);
+            String projectPath = System.getProperty("user.dir");
 
+            InputStream inputStream = new FileInputStream(projectPath + "/src/main/resources/environment.properties");
+            properties.load(inputStream);
         } catch (Exception e) {
             e.printStackTrace();
         }

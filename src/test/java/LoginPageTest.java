@@ -10,10 +10,10 @@ import pages.LoginPage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginPageTest {
-    LoginPage loginPage;
-    static WebDriver driver;
-    static EnvironmentConfigLoader environmentConfigLoader = new EnvironmentConfigLoader();
-    UserConfigLoader userConfigLoader = new UserConfigLoader();
+    private LoginPage loginPage;
+    private static WebDriver driver;
+    private static EnvironmentConfigLoader environmentConfigLoader = new EnvironmentConfigLoader();
+    private UserConfigLoader userConfigLoader = new UserConfigLoader();
 
     @Test
     void checkIfLoginDefaultUser() {
@@ -21,7 +21,7 @@ public class LoginPageTest {
         loginPage.password().sendKeys(userConfigLoader.getUserPassword());
         loginPage.button().click();
 
-        assertEquals(userConfigLoader.getUserFullName(), loginPage.spanWithUsersRole().getText(), "Span should contain word: Administrator ");
+        assertEquals(userConfigLoader.getUserFullName(), loginPage.spanWithUsersRole().getText(), "Span should contain word: " + userConfigLoader.getUserFullName());
     }
 
     @BeforeEach
