@@ -1,3 +1,5 @@
+package config_loaders;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -6,14 +8,14 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigLoader {
+public class EnvironmentConfigLoader {
     private Properties properties;
 
-    public ConfigLoader() {
+    public EnvironmentConfigLoader() {
         properties = new Properties();
 
         try {
-            InputStream inputStream = new FileInputStream("/Users/fmastalerz/IdeaProjects/alfresco/src/test/java/config.properties");
+            InputStream inputStream = new FileInputStream("/Users/fmastalerz/IdeaProjects/alfresco/src/main/resources/environment.properties");
             properties.load(inputStream);
 
         } catch (Exception e) {
@@ -34,15 +36,7 @@ public class ConfigLoader {
         }
     }
 
-    public String getUserLogin(){
-        return properties.getProperty("user");
-    }
-
-    public String getUserPassword(){
-        return properties.getProperty("password");
-    }
-
-    public String getUserFullName() {
-        return properties.getProperty("full_name");
+    public String getPageURL() {
+        return properties.getProperty("pageURL");
     }
 }

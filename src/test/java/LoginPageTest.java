@@ -1,3 +1,6 @@
+import config_loaders.EnvironmentConfigLoader;
+import config_loaders.UrlCreator;
+import config_loaders.UserConfigLoader;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,26 +13,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LoginPageTest {
     LoginPage loginPage;
     static WebDriver driver;
-    static ConfigLoader configLoader = new ConfigLoader();
+    static EnvironmentConfigLoader environmentConfigLoader = new EnvironmentConfigLoader();
+    UserConfigLoader userConfigLoader = new UserConfigLoader();
+    UrlCreator urlCreator = new UrlCreator();
 
     @Test
     void checkIfLoginDefaultUser() {
-        loginPage.userName().sendKeys(configLoader.getUserLogin());
-        loginPage.password().sendKeys(configLoader.getUserPassword());
+        loginPage.userName().sendKeys(userConfigLoader.getUserLogin());
+        loginPage.password().sendKeys(userConfigLoader.getUserPassword());
         loginPage.button().click();
 
-        assertEquals(configLoader.getUserFullName(), loginPage.spanWithUsersRole().getText(), "Span should contain word: Administrator ");
+        assertEquals(userConfigLoader.getUserFullName(), loginPage.spanWithUsersRole().getText(), "Span should contain word: Administrator ");
     }
 
     @BeforeEach
     public void beforeEach(){
-        driver.get("http://127.0.0.1:8080/share/page/");
+        driver.get(urlCreator.getURL());
         loginPage = new LoginPage(driver);
     }
 
     @BeforeAll
     public static void beforeAll(){
-        driver = configLoader.getDriver();
+        driver = environmentConfigLoader.getDriver();
     }
 
     @AfterAll
