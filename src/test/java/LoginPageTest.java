@@ -3,22 +3,22 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginPageTest {
-    public static WebDriver driver;
-    public LoginPage loginPage;
+    LoginPage loginPage;
+    static WebDriver driver;
+    static ConfigLoader configLoader = new ConfigLoader();
 
     @Test
     void checkIfLoginDefaultUser() {
-        loginPage.userName().sendKeys("admin");
-        loginPage.password().sendKeys("admin123");
+        loginPage.userName().sendKeys(configLoader.getUserLogin());
+        loginPage.password().sendKeys(configLoader.getUserPassword());
         loginPage.button().click();
 
-        assertEquals("Administrator", loginPage.spanWithUsersRole().getText(), "Span should contain word: Administrator ");
+        assertEquals(configLoader.getUserFullName(), loginPage.spanWithUsersRole().getText(), "Span should contain word: Administrator ");
     }
 
     @BeforeEach
@@ -29,12 +29,12 @@ public class LoginPageTest {
 
     @BeforeAll
     public static void beforeAll(){
-        driver = new ChromeDriver();
+        driver = configLoader.getDriver();
     }
 
     @AfterAll
     public static void afterAll(){
-       //driver.quit();
+       driver.quit();
     }
 
 }
