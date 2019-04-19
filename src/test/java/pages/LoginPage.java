@@ -23,4 +23,7 @@ public class LoginPage {
         return driver.findElement(By.id("page_x002e_components_x002e_slingshot-login_x0023_default-submit-button"));
     }
 
+    public WebElement spanWithUsersRole() {
+        return driver.findElement(By.id("HEADER_USER_MENU_POPUP_text"));
+    }
 }

@@ -1,17 +1,16 @@
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.AdminPage;
 import pages.LoginPage;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginPageTest {
     public static WebDriver driver;
     public LoginPage loginPage;
-    public AdminPage adminPage;
 
     @Test
     void checkIfLoginDefaultUser() {
@@ -19,11 +18,7 @@ public class LoginPageTest {
         loginPage.password().sendKeys("admin123");
         loginPage.button().click();
 
-        //todo: sent this part to the proper place as soon as possible
-        driver.get("http://127.0.0.1:8080/share/page/user/admin/dashboard");
-        adminPage = new AdminPage(driver);
-
-        assertEquals("Administrator", adminPage.spanWithUsersRole().getText());
+        assertEquals("Administrator", loginPage.spanWithUsersRole().getText(), "Span should contain word: Administrator ");
     }
 
     @BeforeEach
