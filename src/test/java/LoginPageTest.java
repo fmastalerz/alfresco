@@ -1,5 +1,4 @@
 import config_loaders.EnvironmentConfigLoader;
-import config_loaders.UrlCreator;
 import config_loaders.UserConfigLoader;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +14,6 @@ public class LoginPageTest {
     static WebDriver driver;
     static EnvironmentConfigLoader environmentConfigLoader = new EnvironmentConfigLoader();
     UserConfigLoader userConfigLoader = new UserConfigLoader();
-    UrlCreator urlCreator = new UrlCreator();
 
     @Test
     void checkIfLoginDefaultUser() {
@@ -28,7 +26,7 @@ public class LoginPageTest {
 
     @BeforeEach
     public void beforeEach(){
-        driver.get(urlCreator.getURL());
+        driver.get(environmentConfigLoader.getURL());
         loginPage = new LoginPage(driver);
     }
 

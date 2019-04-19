@@ -36,7 +36,7 @@ public class EnvironmentConfigLoader {
         }
     }
 
-    public String getPageURL() {
-        return properties.getProperty("pageURL");
+    public String getURL() {
+        return "http://" + properties.getProperty("hostname") + ":" + properties.getProperty("port") + properties.getProperty("pageURL");
     }
 }
