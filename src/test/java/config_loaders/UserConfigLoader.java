@@ -1,23 +1,12 @@
 package config_loaders;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class UserConfigLoader {
     private Properties properties;
 
-    public UserConfigLoader() {
-        properties = new Properties();
-
-        try {
-            String projectPath = System.getProperty("user.dir");
-
-            InputStream inputStream = new FileInputStream(projectPath + "/src/main/resources/user.properties");
-            properties.load(inputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public UserConfigLoader(Properties properties) {
+        this.properties = properties;
     }
 
     public String getUserLogin(){

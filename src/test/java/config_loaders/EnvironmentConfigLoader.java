@@ -4,40 +4,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class EnvironmentConfigLoader {
     private Properties properties;
 
-    public EnvironmentConfigLoader() {
-        properties = new Properties();
-
-        try {
-            String projectPath = System.getProperty("user.dir");
-
-            InputStream inputStream = new FileInputStream(projectPath + "/src/main/resources/environment.properties");
-            properties.load(inputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public EnvironmentConfigLoader(Properties properties) {
+        this.properties = properties;
     }
 
     public WebDriver getDriver() {
         if (properties.getProperty("browser").equals("chrome")){
             return new ChromeDriver();
         }
-        if  (properties.getProperty("browser").equals("firefox")){
-            return new FirefoxDriver();
-        }
-        else {
-            //what if I got no browser in properties? how should I deal with it?
-            return null;
-        }
+        // I choose to return firefox driver as a default one that's why I don't use switch-case
+        return new FirefoxDriver();
     }
 
     public String getURL() {
-        return "http://" + properties.getProperty("hostname") + ":" + properties.getProperty("port") + properties.getProperty("pageURL");
+        String hostname = properties.getProperty("hostname");
+        String portNmb = properties.getProperty("port");
+        String pageURL = properties.getProperty("pageURL");
+
+        return String.format("http://%s:%s%s", hostname, portNmb, pageURL );
     }
 }
