@@ -4,11 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    WebDriver driver;
-
-    By usernameLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-username");
-    By passwordLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-password");
-    By loginButtonLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-submit-button");
+    private WebDriver driver;
+    private By usernameLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-username");
+    private By passwordLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-password");
+    private By loginButtonLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-submit-button");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;

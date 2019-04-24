@@ -1,12 +1,12 @@
-package config_loaders;
+package loaders;
 
 import java.util.Properties;
 
 public class UserConfigLoader {
     private Properties properties;
 
-    public UserConfigLoader(Properties properties) {
-        this.properties = properties;
+    public UserConfigLoader(String propName) {
+        this.properties = new PropertiesLoader().load(propName);
     }
 
     public String getUserLogin(){

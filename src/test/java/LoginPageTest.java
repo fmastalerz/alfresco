@@ -1,6 +1,5 @@
-import config_loaders.PropertiesLoader;
-import config_loaders.EnvironmentConfigLoader;
-import config_loaders.UserConfigLoader;
+import loaders.EnvironmentConfigLoader;
+import loaders.UserConfigLoader;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,37 +14,35 @@ public class LoginPageTest {
     private LoginPage loginPage;
     private HomePage homePage;
     private static WebDriver driver;
-    // I know that this is too long - will work with this tomorrow; also know that I can load properties in better way, also work with this tomorrow
-    private static EnvironmentConfigLoader environmentConfigLoader = new EnvironmentConfigLoader(new PropertiesLoader().load("environment"));
-    private UserConfigLoader userConfigLoader = new UserConfigLoader(new PropertiesLoader().load("user"));
+    private UserConfigLoader userConfLoader = new UserConfigLoader("user");
+    private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
 
     @Test
     void checkIfLoginDefaultUser() {
-        loginPage.typeUsername(userConfigLoader.getUserLogin());
-        loginPage.typePassword(userConfigLoader.getUserPassword());
+        loginPage.typeUsername(userConfLoader.getUserLogin());
+        loginPage.typePassword(userConfLoader.getUserPassword());
         homePage = loginPage.submitLogin();
 
-        String userFullName = userConfigLoader.getUserFullName();
+        String userFullName = userConfLoader.getUserFullName();
         String spanWithUsername = homePage.nameFromSpan();
-        String errorMsg = String.format("Span should contain: %s", userConfigLoader.getUserFullName());
+        String errorMsg = String.format("Span should contain: %s", userConfLoader.getUserFullName());
 
         assertEquals(userFullName, spanWithUsername, errorMsg);
     }
 
     @BeforeEach
     public void beforeEach(){
-        driver.get(environmentConfigLoader.getURL());
+        driver.get(envConfLoader.getURL());
         loginPage = new LoginPage(driver);
     }
 
     @BeforeAll
     public static void beforeAll(){
-        driver = environmentConfigLoader.getDriver();
+        driver = envConfLoader.getDriver();
     }
 
     @AfterAll
     public static void afterAll(){
-       driver.quit();
+        driver.quit();
     }
-
 }
