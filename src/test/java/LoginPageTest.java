@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginPageTest {
     private LoginPage loginPage;
-    private HomePage homePage;
     private static WebDriver driver;
     private UserConfigLoader userConfLoader = new UserConfigLoader("user");
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
@@ -21,12 +20,12 @@ public class LoginPageTest {
     void checkIfLoginDefaultUser() {
         loginPage.typeUsername(userConfLoader.getUserLogin());
         loginPage.typePassword(userConfLoader.getUserPassword());
-        homePage = loginPage.submitLogin();
+        HomePage homePage = loginPage.submitLogin();
 
         String userFullName = userConfLoader.getUserFullName();
         String spanWithUsername = homePage.nameFromSpan();
-        String errorMsg = String.format("Span should contain: %s", userConfLoader.getUserFullName());
 
+        String errorMsg = String.format("Span should contain: %s", userConfLoader.getUserFullName());
         assertEquals(userFullName, spanWithUsername, errorMsg);
     }
 

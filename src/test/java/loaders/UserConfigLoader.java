@@ -6,7 +6,7 @@ public class UserConfigLoader {
     private Properties properties;
 
     public UserConfigLoader(String propName) {
-        this.properties = new PropertiesLoader().load(propName);
+        this.properties = PropertiesLoader.load(propName);
     }
 
     public String getUserLogin(){
