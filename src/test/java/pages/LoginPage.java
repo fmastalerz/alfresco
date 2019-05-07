@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage { // todo final
     private WebDriver driver;
     private By usernameLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-username");
     private By passwordLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-password");
