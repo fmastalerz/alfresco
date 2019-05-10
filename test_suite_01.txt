@@ -1,8 +1,8 @@
-Test id:
+Test Case id:
 - TC01
 
 Test name:
-- leave empty 'First name' field
+- Verify that 'First name' field can't be empty
 
 Test designed by:
 - fmastalerz
@@ -22,7 +22,7 @@ Pre conditions:
   form for creating new user is displayed
 
 Test steps:
-1
+1. click on 'Create User'
 
 Test data:
 - none
@@ -37,11 +37,11 @@ Pass/ fail:
 - pass
 ----------
 
-Test id:
+Test Case id:
 - TC02
 
 Test name:
-- enter 2 chars into 'Password' field
+- Verify that 'Password' field can't contains less than 2 characters
 
 Test designed by:
 - fmastalerz
@@ -81,11 +81,11 @@ Pass/ fail:
 - pass
 ----------
 
-Test id:
+Test Case id:
 - TC03
 
 Test name:
-- enter invalid mail format into 'Email' field
+- Verify that entering email address without '@' won't be possible
 
 Test designed by:
 - fmastalerz
@@ -121,6 +121,97 @@ Actual result:
 
 Pass/ fail:
 - pass
+-------------------------------------------------------------------------------------
 
+Test Case id:
+- TC04
 
+Test name:
+- Verify that 'First Name' field can have 1 character
+---
 
+Test Case id:
+- TC05
+
+Test name:
+- Verify that 'First Name' field can have 256 characters
+---
+
+Test Case id:
+- TC06
+
+Test name:
+- Verify that 'Last Name' field can be empty
+---
+
+Test Case id:
+- TC07
+
+Test name:
+- Verify that 'Last Name' field can have 256 characters
+---
+
+Test Case id:
+- TC08
+
+Test name:
+- Verify that 'Email' field can't be empty
+---
+
+Test Case id:
+- TC09
+
+Test name:
+- Verify that 'Email' field can't have 2 characters
+---
+
+Test Case id:
+- TC10
+
+Test name:
+- Verify that 'Email' field can have 3 characters in proper format
+---
+
+Test Case id:
+- TC11
+
+Test name:
+- Verify that 'Email' field can have 256 characters in proper format
+---
+
+Test Case id:
+- TC12
+
+Test name:
+- Verify that 'Email' field can't have 3 characters in wrong format
+---
+
+Test Case id:
+- TC13
+
+Test name:
+- Verify that 'Email' field can't have 256 characters in wrong format
+
+// should I write this test if I've got the TC12? do this test make sense?!
+---
+
+Test Case id:
+- TC14
+
+Test name:
+- Verify that 'Password' field can't be empty
+---
+
+Test Case id:
+- TC15
+
+Test name:
+- Verify that 'Password' field can't have 2 characters
+---
+
+Test Case id:
+- TC16
+
+Test name:
+- Verify that 'Password' field can have 256 characters
+---
