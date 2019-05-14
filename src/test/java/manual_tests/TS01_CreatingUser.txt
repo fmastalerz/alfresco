@@ -42,6 +42,10 @@ TSS01- Verify 'First Name' field:
 
  TC04 - Verify that 'First Name' can contain any kind of character
 
+TC05 - First Name of 256 alpha symbols
+TC06 - First name of 1 digit
+TC07 - Empty First Name
+TC08 -
 
 TSS02 - Verify 'Last Name' field:
 
