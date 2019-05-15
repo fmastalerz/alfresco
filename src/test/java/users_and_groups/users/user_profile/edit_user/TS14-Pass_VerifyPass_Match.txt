@@ -1,4 +1,4 @@
-TS07 - Check if 'Password' and 'Verify Password' match each other:
+TS14 - Check if 'Password' and 'Verify Password' match each other:
 
 TC01 - Both fields empty
 TC02 - Both fields same 3 alpha

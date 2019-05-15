@@ -1,4 +1,4 @@
-TS14 - Verify Quota input field:
+TS10 - Verify Quota input field:
 
 TC01 - Empty Quota
 TC02 - Quota of 8 alpha symbols
