@@ -1,1 +1,1 @@
-TS04 - Verify 'Cancel' button:Ż
+TS04 - Verify 'Cancel' button:

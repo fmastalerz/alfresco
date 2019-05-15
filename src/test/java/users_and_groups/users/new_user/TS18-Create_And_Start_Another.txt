@@ -1,4 +1,4 @@
-TS15 - Verify 'Create And Start Another' button:
+TS18 - Verify 'Create And Start Another' button:
 
 TC01 - Use button with no input in form
 TC02 - Use button when form is filled with valid data
