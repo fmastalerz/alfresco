@@ -1,4 +1,4 @@
-TS07 - Verify navigation arrows button:
+TS06 - Verify navigation arrows button:
 
 TC01 - Click left button
 TC02 - Click right button

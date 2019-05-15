@@ -1,4 +1,4 @@
-TS05 - Verify 'User Search' result table:
+TS01 - Verify 'User Search' result table:
 
 TC01 - Show no users
 TC02 - Show all users

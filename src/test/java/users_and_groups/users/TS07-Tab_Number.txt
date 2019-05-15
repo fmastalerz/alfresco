@@ -1,4 +1,4 @@
-TS08 - Verify 'User Search' table tab number:
+TS07 - Verify 'User Search' table tab number:
 
 TC01 - Display first tab
 TC02 - Display last tab
