@@ -1,0 +1,3 @@
+TS04 - Verify 'Upload File' button:
+
+TC01 - Click button
