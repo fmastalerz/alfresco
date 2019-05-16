@@ -1,0 +1,5 @@
+TS04 - Verify uploading users from csv file:
+
+TC01 - User can upload users from .csv file
+TC02 - User can't upload empty .csv file
+TC03 - User can't upload other types of file than .csv
