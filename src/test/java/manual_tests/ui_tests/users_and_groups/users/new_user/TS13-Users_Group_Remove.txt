@@ -1,4 +1,4 @@
-TS13 - Verify users group remove button:
+TS13 - Verify functionality_tests.users_and_groups.users group remove button:
 
 TC01 - Remove 1 group
 TC02 - Remove 101 groups

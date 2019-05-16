@@ -7,4 +7,4 @@ TC04 - First Name of 256 non-printable characters
 TC05 - First Name of 256 mixed symbols
 TC06 - First Name of 256 special symbols
 TC07 - First Name of 257 alpha symbols
-TC08 - Field display users First Name
+TC08 - Field display functionality_tests.users_and_groups.users First Name

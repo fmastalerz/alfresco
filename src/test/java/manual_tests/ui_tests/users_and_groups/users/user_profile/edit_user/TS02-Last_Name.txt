@@ -7,4 +7,4 @@ TC04 - Last Name of 256 non-printable characters
 TC05 - Last Name of 256 mixed symbols
 TC06 - Last Name of 256 special symbols
 TC07 - Last Name of 257 alpha symbols
-TC08 - Field display users Last Name
+TC08 - Field display functionality_tests.users_and_groups.users Last Name
