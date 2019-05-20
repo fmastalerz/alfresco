@@ -1,4 +1,4 @@
-TS02 - Verify displaying users:
+TS03 - Verify displaying users:
 
 TC01 - User can display all users by using labels in the table
 TC02 - User can sort all users ascending by using labels in the table
