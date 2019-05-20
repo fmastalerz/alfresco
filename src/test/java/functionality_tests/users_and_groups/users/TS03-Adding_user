@@ -1,3 +1,5 @@
 TS03 - Verify adding user:
 
-TC01 - User can add user
+TC01 - User can create new user
+TC02 - User can create new user and start creating another
+TC03 - User can cancel creating new user  
