@@ -1,4 +1,4 @@
-package login_page_test.pages;
+package loginpage.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,4 +14,5 @@ public class HomePage {
     public String nameFromSpan() {
         return driver.findElement(nameSpanLocator).getText();
     }
+
 }

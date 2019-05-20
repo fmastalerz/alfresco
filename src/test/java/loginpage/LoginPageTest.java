@@ -1,18 +1,18 @@
-package login_page_test;
+package loginpage;
 
-import login_page_test.loaders.EnvironmentConfigLoader;
-import login_page_test.loaders.UserConfigLoader;
+import loginpage.loaders.EnvironmentConfigLoader;
+import loginpage.loaders.UserConfigLoader;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import login_page_test.pages.HomePage;
-import login_page_test.pages.LoginPage;
+import loginpage.pages.HomePage;
+import loginpage.pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoginPageTest {
+class LoginPageTest {
     private LoginPage loginPage;
     private static WebDriver driver;
     private UserConfigLoader userConfLoader = new UserConfigLoader("user");
@@ -32,18 +32,18 @@ public class LoginPageTest {
     }
 
     @BeforeEach
-    public void beforeEach(){
+    void beforeEach(){
         driver.get(envConfLoader.getURL());
         loginPage = new LoginPage(driver);
     }
 
     @BeforeAll
-    public static void beforeAll(){
+    static void beforeAll(){
         driver = envConfLoader.getDriver();
     }
 
     @AfterAll
-    public static void afterAll(){
+    static void afterAll(){
         driver.quit();
     }
 }
