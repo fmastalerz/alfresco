@@ -24,8 +24,9 @@ public class NewGroupPage {
         return this;
     }
 
-    public void submitCreateGroup() {
+    public NewGroupPage submitCreateGroupButton() {
         driver.findElement(createGroupButtonLocator).click();
+        return this;
     }
 
 

@@ -1,16 +1,14 @@
 package automation.tests;
 
 import automation.utils.loaders.EnvironmentConfigLoader;
+import automation.utils.loaders.GroupPropLoader;
 import automation.utils.loaders.UserConfigLoader;
 import automation.pages.BrowsePage;
 import automation.pages.HomePage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,10 +17,10 @@ public class ManagingGroupTest {
 
     private static LoginPage loginPage;
     private NewGroupPage newGroupPage;
-    private  static HomePage homePage;
     private BrowsePage browsePage;
     private static WebDriver driver;
     private static UserConfigLoader userConfLoader = new UserConfigLoader("user");
+    private GroupPropLoader groupPropLoader = new GroupPropLoader("group");
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
 
     //TC02 - Existing group can be edited
@@ -37,18 +35,17 @@ public class ManagingGroupTest {
 
         //when:
         newGroupPage = new NewGroupPage(driver);
-        //todo: make it more generic - send this to config file
-        newGroupPage.typeIdentifier("Group");
-        newGroupPage.typeDisplayName("SomeGroup");
-        newGroupPage.submitCreateGroup();
+        newGroupPage.typeIdentifier(groupPropLoader.getGroupIdentifier());
+        newGroupPage.typeDisplayName(groupPropLoader.getGroupDisplayName());
+        newGroupPage.submitCreateGroupButton();
+
+        browsePage = new BrowsePage(driver);
 
         driver.get(envConfLoader.getBrowsePanel());
         driver.navigate().refresh();
 
-        BrowsePage browsePage = new BrowsePage(driver);
-
         //then
-        assertEquals("SomeGroup (Group)", browsePage.getGroupName());
+        assertEquals("NewGroup (Group)", browsePage.getGroupName());
     }
 
     @BeforeEach
@@ -66,7 +63,7 @@ public class ManagingGroupTest {
         loginPage.typeUsername(userConfLoader.getUserLogin());
         loginPage.typePassword(userConfLoader.getUserPassword());
 
-        homePage = loginPage.submitLogin();
+        HomePage homePage = loginPage.submitLogin();
     }
 
     @AfterAll

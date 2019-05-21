@@ -6,15 +6,14 @@ import org.openqa.selenium.WebElement;
 
 public class BrowsePage {
     private WebDriver driver;
+    private By groupIdentifier = By.xpath("//span[contains(text(),'NewGroup (Group)')]");
 
     public BrowsePage(WebDriver driver) {
         this.driver = driver;
     }
 
-
-
     public String getGroupName() {
-        WebElement spanWithGroupName = driver.findElement(By.xpath("//span[contains(text(),'SomeGroup')]"));
+        WebElement spanWithGroupName = driver.findElement(groupIdentifier);
         return spanWithGroupName.getText();
     }
 }
