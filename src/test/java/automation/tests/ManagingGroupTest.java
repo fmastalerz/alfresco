@@ -4,7 +4,6 @@ import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.GroupPropLoader;
 import automation.utils.loaders.UserConfigLoader;
 import automation.pages.BrowsePage;
-import automation.pages.HomePage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
@@ -31,7 +30,7 @@ public class ManagingGroupTest {
     @Test
     void checkIfNewGroupCanBeCreated() {
         //given:
-        driver.get(envConfLoader.getNewGroup());
+        driver.get(envConfLoader.getNewGroupPanel());
 
         //when:
         String identifier = groupPropLoader.getGroupIdentifier();
@@ -44,7 +43,7 @@ public class ManagingGroupTest {
 
         browsePage = new BrowsePage(driver, displayName, identifier);
 
-        driver.get(envConfLoader.getBrowsePanel());
+        driver.get(envConfLoader.getAdminBrowsePanel());
         driver.navigate().refresh();
 
         //then
@@ -53,7 +52,7 @@ public class ManagingGroupTest {
 
     @BeforeEach
     void beforeEach() {
-        driver.get(envConfLoader.getBrowsePanel());
+        driver.get(envConfLoader.getAdminBrowsePanel());
     }
 
     @BeforeAll
