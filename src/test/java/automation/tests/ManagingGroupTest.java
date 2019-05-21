@@ -8,7 +8,9 @@ import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,12 +40,15 @@ public class ManagingGroupTest {
         //todo: make it more generic - send this to config file
         newGroupPage.typeIdentifier("Group");
         newGroupPage.typeDisplayName("SomeGroup");
-        browsePage = newGroupPage.submitCreateGroup();
+        newGroupPage.submitCreateGroup();
+
+        driver.get(envConfLoader.getBrowsePanel());
+        driver.navigate().refresh();
+
+        BrowsePage browsePage = new BrowsePage(driver);
 
         //then
-        Alert alert=driver.switchTo().alert();
-        System.out.println(alert.getText());
-        alert.dismiss();
+        assertEquals("SomeGroup (Group)", browsePage.getGroupName());
     }
 
     @BeforeEach
@@ -66,6 +71,6 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       //driver.quit();
+       driver.quit();
     }
 }
