@@ -34,18 +34,21 @@ public class ManagingGroupTest {
         driver.get(envConfLoader.getNewGroup());
 
         //when:
+        String identifier = groupPropLoader.getGroupIdentifier();
+        String displayName = groupPropLoader.getGroupDisplayName();
+
         newGroupPage = new NewGroupPage(driver);
-        newGroupPage.typeIdentifier(groupPropLoader.getGroupIdentifier());
-        newGroupPage.typeDisplayName(groupPropLoader.getGroupDisplayName());
+        newGroupPage.typeIdentifier(identifier);
+        newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
 
-        browsePage = new BrowsePage(driver);
+        browsePage = new BrowsePage(driver, displayName, identifier);
 
         driver.get(envConfLoader.getBrowsePanel());
         driver.navigate().refresh();
 
         //then
-        assertEquals("NewGroup (Group)", browsePage.getGroupName());
+        assertEquals(String.format("%s (%s)", displayName, identifier), browsePage.getGroupName());
     }
 
     @BeforeEach
@@ -63,7 +66,7 @@ public class ManagingGroupTest {
         loginPage.typeUsername(userConfLoader.getUserLogin());
         loginPage.typePassword(userConfLoader.getUserPassword());
 
-        HomePage homePage = loginPage.submitLogin();
+        loginPage.submitLogin();
     }
 
     @AfterAll
