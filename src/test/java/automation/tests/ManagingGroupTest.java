@@ -7,7 +7,9 @@ import automation.pages.BrowsePage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +39,8 @@ public class ManagingGroupTest {
         newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
 
-        browsePage = new BrowsePage(driver, displayName, identifier);
+        browsePage = new BrowsePage(driver);
+        browsePage.setXpath(displayName, identifier);
 
         driver.get(envConfLoader.getAdminBrowsePanel());
         driver.navigate().refresh();
@@ -47,6 +50,14 @@ public class ManagingGroupTest {
     }
 
     //TC02 - Existing group can be edited
+    @Test
+    void checkIfGroupCanBeEdited() {
+        //todo: implement this
+        WebElement some = driver.findElement(By.xpath());
+
+    }
+
+
     //TC03 - Existing group can be removed
     //TC04 - Existing group can be removed permanently
 
@@ -70,6 +81,6 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       driver.quit();
+       //driver.quit();
     }
 }

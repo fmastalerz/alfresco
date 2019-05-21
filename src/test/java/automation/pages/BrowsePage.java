@@ -8,8 +8,12 @@ public class BrowsePage {
     private WebDriver driver;
     private By groupIdentifier;
 
-    public BrowsePage(WebDriver driver, String displayName, String identifier) {
+    public BrowsePage(WebDriver driver) {
         this.driver = driver;
+
+    }
+
+    public void setXpath(String displayName, String identifier) {
         this.groupIdentifier = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
     }
 
