@@ -15,16 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ManagingGroupTest {
 
     private static LoginPage loginPage;
-    private NewGroupPage newGroupPage;
-    private BrowsePage browsePage;
     private static WebDriver driver;
     private static UserConfigLoader userConfLoader = new UserConfigLoader("user");
-    private GroupPropLoader groupPropLoader = new GroupPropLoader("group");
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
-
-    //TC02 - Existing group can be edited
-    //TC03 - Existing group can be removed
-    //TC04 - Existing group can be removed permanently
+    private NewGroupPage newGroupPage;
+    private BrowsePage browsePage;
+    private GroupPropLoader groupPropLoader = new GroupPropLoader("group");
 
     //TC01 - New group can be added
     @Test
@@ -49,6 +45,10 @@ public class ManagingGroupTest {
         //then
         assertEquals(String.format("%s (%s)", displayName, identifier), browsePage.getGroupName());
     }
+
+    //TC02 - Existing group can be edited
+    //TC03 - Existing group can be removed
+    //TC04 - Existing group can be removed permanently
 
     @BeforeEach
     void beforeEach() {
