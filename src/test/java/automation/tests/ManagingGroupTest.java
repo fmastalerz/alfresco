@@ -1,19 +1,24 @@
-package browsegroup;
+package automation.tests;
 
-import loginpage.loaders.EnvironmentConfigLoader;
-import loginpage.loaders.UserConfigLoader;
-import loginpage.pages.HomePage;
-import loginpage.pages.LoginPage;
-import loginpage.pages.NewGroupPage;
+import automation.utils.loaders.EnvironmentConfigLoader;
+import automation.utils.loaders.UserConfigLoader;
+import automation.pages.BrowsePage;
+import automation.pages.HomePage;
+import automation.pages.LoginPage;
+import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ManagingGroupTest {
 
     private static LoginPage loginPage;
     private NewGroupPage newGroupPage;
+    private  static HomePage homePage;
+    private BrowsePage browsePage;
     private static WebDriver driver;
     private static UserConfigLoader userConfLoader = new UserConfigLoader("user");
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
@@ -24,13 +29,21 @@ public class ManagingGroupTest {
 
     //TC01 - New group can be added
     @Test
-    void checkIfNewGroupCanBeCreated() throws InterruptedException {
-        driver.get("http://127.0.0.1:8080/share/page/console/admin-console/groups#state=panel%3Dcreate");
+    void checkIfNewGroupCanBeCreated() {
+        //given:
+        driver.get(envConfLoader.getNewGroup());
+
+        //when:
         newGroupPage = new NewGroupPage(driver);
-        newGroupPage.typeIdentifier("New User Group");
-        newGroupPage.typeDisplayName("Some new user group");
-        Thread.sleep(1000);
-        newGroupPage.submitCreateGroup();
+        //todo: make it more generic - send this to config file
+        newGroupPage.typeIdentifier("Group");
+        newGroupPage.typeDisplayName("SomeGroup");
+        browsePage = newGroupPage.submitCreateGroup();
+
+        //then
+        Alert alert=driver.switchTo().alert();
+        System.out.println(alert.getText());
+        alert.dismiss();
     }
 
     @BeforeEach
@@ -43,15 +56,16 @@ public class ManagingGroupTest {
         driver = envConfLoader.getDriver();
 
         driver.get(envConfLoader.getURL());
-        loginPage = new LoginPage(driver);
 
+        loginPage = new LoginPage(driver);
         loginPage.typeUsername(userConfLoader.getUserLogin());
         loginPage.typePassword(userConfLoader.getUserPassword());
-        HomePage homePage = loginPage.submitLogin();
+
+        homePage = loginPage.submitLogin();
     }
 
     @AfterAll
     static void afterAll() {
-       // driver.quit();
+       //driver.quit();
     }
 }
