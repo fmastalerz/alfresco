@@ -2,13 +2,12 @@ package automation.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class BrowsePage {
+public class GroupManagementPage {
     private WebDriver driver;
     private By groupIdentifier;
 
-    public BrowsePage(WebDriver driver) {
+    public GroupManagementPage(WebDriver driver) {
         this.driver = driver;
 
     }
@@ -18,7 +17,6 @@ public class BrowsePage {
     }
 
     public String getGroupName() {
-        WebElement spanWithGroupName = driver.findElement(groupIdentifier);
-        return spanWithGroupName.getText();
+        return driver.findElement(groupIdentifier).getText();
     }
 }

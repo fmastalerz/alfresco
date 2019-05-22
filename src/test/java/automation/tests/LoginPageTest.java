@@ -33,7 +33,7 @@ class LoginPageTest {
 
     @BeforeEach
     void beforeEach(){
-        driver.get(envConfLoader.getURL());
+        driver.get(envConfLoader.urlBeginning());
         loginPage = new LoginPage(driver);
     }
 

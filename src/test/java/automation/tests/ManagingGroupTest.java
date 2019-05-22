@@ -3,13 +3,11 @@ package automation.tests;
 import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.GroupPropLoader;
 import automation.utils.loaders.UserConfigLoader;
-import automation.pages.BrowsePage;
+import automation.pages.GroupManagementPage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,7 +19,7 @@ public class ManagingGroupTest {
     private static UserConfigLoader userConfLoader = new UserConfigLoader("user");
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
     private NewGroupPage newGroupPage;
-    private BrowsePage browsePage;
+    private GroupManagementPage groupManagementPage;
     private GroupPropLoader groupPropLoader = new GroupPropLoader("group");
 
     //TC01 - New group can be added
@@ -39,22 +37,20 @@ public class ManagingGroupTest {
         newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
 
-        browsePage = new BrowsePage(driver);
-        browsePage.setXpath(displayName, identifier);
+        groupManagementPage = new GroupManagementPage(driver);
+        groupManagementPage.setXpath(displayName, identifier);
 
         driver.get(envConfLoader.getAdminBrowsePanel());
         driver.navigate().refresh();
 
         //then
-        assertEquals(String.format("%s (%s)", displayName, identifier), browsePage.getGroupName());
+        assertEquals(String.format("%s (%s)", displayName, identifier), groupManagementPage.getGroupName());
     }
 
     //TC02 - Existing group can be edited
     @Test
     void checkIfGroupCanBeEdited() {
         //todo: implement this
-        WebElement some = driver.findElement(By.xpath());
-
     }
 
 
@@ -70,7 +66,7 @@ public class ManagingGroupTest {
     public static void beforeAll() {
         driver = envConfLoader.getDriver();
 
-        driver.get(envConfLoader.getURL());
+        driver.get(envConfLoader.urlBeginning());
 
         loginPage = new LoginPage(driver);
         loginPage.typeUsername(userConfLoader.getUserLogin());
@@ -81,6 +77,6 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       //driver.quit();
+       driver.quit();
     }
 }

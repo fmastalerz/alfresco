@@ -23,8 +23,9 @@ public class EnvironmentConfigLoader {
         return new FirefoxDriver();
     }
 
-    public String getURL() {
+    public String urlBeginning() {
         // fixme check nulls
+        // fixme write buider for making URL
         String hostname = properties.getProperty("hostname");
         String port = properties.getProperty("port");
         String pageURL = properties.getProperty("pageURL");
@@ -32,10 +33,15 @@ public class EnvironmentConfigLoader {
     }
 
     public  String getAdminBrowsePanel() {
-        return properties.getProperty("adminBrowsePanel");
+        String adminBrowsePanel = properties.getProperty("adminBrowsePanel");
+        String adminToolsPanel = properties.getProperty("adminToolsPanel");
+        return String.format("%s%s%s", urlBeginning(), adminToolsPanel, adminBrowsePanel);
     }
 
     public String getNewGroupPanel() {
-        return properties.getProperty("adminNewGroupPanel");
+        String adminNewGroupPanel = properties.getProperty("adminNewGroupPanel");
+        String adminToolsPanel = properties.getProperty("adminToolsPanel");
+        return String.format("%s%s%s", urlBeginning(), adminToolsPanel, adminNewGroupPanel);
     }
+
 }
