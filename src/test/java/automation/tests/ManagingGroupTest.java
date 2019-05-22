@@ -26,7 +26,6 @@ public class ManagingGroupTest {
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
     private NewGroupPage newGroupPage;
     private GroupManagementPage groupManagementPage;
-    private GroupPropLoader groupPropLoader = new GroupPropLoader("group");
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
@@ -77,8 +76,8 @@ public class ManagingGroupTest {
 
     @BeforeAll
     public static void beforeAll() {
-        driver = envConfLoader.getDriver();
 
+        driver = envConfLoader.getDriver();
         driver.get(envConfLoader.urlBeginning());
 
         loginPage = new LoginPage(driver);
@@ -95,7 +94,8 @@ public class ManagingGroupTest {
 
     private static Stream<Arguments> groupCredentialsProvider() {
         return Stream.of(
-                Arguments.of("Group", "NewGroup")
+                Arguments.of("Group", "NewGroup"),
+                Arguments.of("DC", "MARVEL")
         );
     }
 }
