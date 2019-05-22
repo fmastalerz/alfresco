@@ -32,7 +32,7 @@ public class EnvironmentConfigLoader {
         return String.format("http://%s:%s%s", hostname, port, pageURL );
     }
 
-    public  String getAdminBrowsePanel() {
+    public  String getGroupManagementPage() {
         String adminBrowsePanel = properties.getProperty("adminBrowsePanel");
         String adminToolsPanel = properties.getProperty("adminToolsPanel");
         return String.format("%s%s%s", urlBeginning(), adminToolsPanel, adminBrowsePanel);

@@ -9,10 +9,9 @@ public class GroupManagementPage {
 
     public GroupManagementPage(WebDriver driver) {
         this.driver = driver;
-
     }
 
-    public void setXpath(String displayName, String identifier) {
+    public void groupNameXPath(String displayName, String identifier) {
         this.groupIdentifier = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
     }
 

@@ -7,11 +7,17 @@ import automation.pages.GroupManagementPage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("TS01 - Managing groups")
 public class ManagingGroupTest {
 
     private static LoginPage loginPage;
@@ -22,44 +28,51 @@ public class ManagingGroupTest {
     private GroupManagementPage groupManagementPage;
     private GroupPropLoader groupPropLoader = new GroupPropLoader("group");
 
-    //TC01 - New group can be added
-    @Test
-    void checkIfNewGroupCanBeCreated() {
+    @DisplayName("TC01 - New group can be created")
+    @ParameterizedTest
+    @MethodSource("groupCredentialsProvider")
+    void checkIfNewGroupCanBeCreated(final String identifier, final String displayName) {
         //given:
         driver.get(envConfLoader.getNewGroupPanel());
 
         //when:
-        String identifier = groupPropLoader.getGroupIdentifier();
-        String displayName = groupPropLoader.getGroupDisplayName();
-
         newGroupPage = new NewGroupPage(driver);
         newGroupPage.typeIdentifier(identifier);
         newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
 
         groupManagementPage = new GroupManagementPage(driver);
-        groupManagementPage.setXpath(displayName, identifier);
+        groupManagementPage.groupNameXPath(displayName, identifier);
 
-        driver.get(envConfLoader.getAdminBrowsePanel());
+        driver.get(envConfLoader.getGroupManagementPage());
         driver.navigate().refresh();
 
         //then
-        assertEquals(String.format("%s (%s)", displayName, identifier), groupManagementPage.getGroupName());
+        assertEquals(String.format("%s (%s)", displayName, identifier), groupManagementPage.getGroupName(),
+                "Group 'display name' and/or 'identifier' are not the same");
     }
 
-    //TC02 - Existing group can be edited
+    @DisplayName("TC02 - Existing group can be edited")
     @Test
     void checkIfGroupCanBeEdited() {
         //todo: implement this
     }
 
+    @DisplayName("TC03 - Existing group can be removed")
+    @Test
+    void checkIfGroupCanBeRemoved() {
+        // todo: implement this
+    }
 
-    //TC03 - Existing group can be removed
-    //TC04 - Existing group can be removed permanently
+    @DisplayName("TC04 - Existing group can be removed permanently")
+    @Test
+    void checkIfGroupCanBeRemovedPermanently() {
+        // todo: implement this
+    }
 
     @BeforeEach
     void beforeEach() {
-        driver.get(envConfLoader.getAdminBrowsePanel());
+        driver.get(envConfLoader.getGroupManagementPage());
     }
 
     @BeforeAll
@@ -78,5 +91,11 @@ public class ManagingGroupTest {
     @AfterAll
     static void afterAll() {
        driver.quit();
+    }
+
+    private static Stream<Arguments> groupCredentialsProvider() {
+        return Stream.of(
+                Arguments.of("Group", "NewGroup")
+        );
     }
 }
