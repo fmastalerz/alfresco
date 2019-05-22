@@ -1,7 +1,15 @@
 package automation.utils.loaders;
 
+import org.openqa.selenium.WebDriver;
+
 public class Go {
-    public static String to(Pages page) {
-        return page.getUrl();
+    private static WebDriver driver;
+
+    public Go(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void to(Pages page) {
+        driver.get(page.getUrl());
     }
 }

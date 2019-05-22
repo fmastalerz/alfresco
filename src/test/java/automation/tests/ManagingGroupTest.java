@@ -1,8 +1,6 @@
 package automation.tests;
 
-import automation.utils.loaders.EnvironmentConfigLoader;
-import automation.utils.loaders.GroupPropLoader;
-import automation.utils.loaders.UserConfigLoader;
+import automation.utils.loaders.*;
 import automation.pages.GroupManagementPage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
@@ -26,13 +24,15 @@ public class ManagingGroupTest {
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
     private NewGroupPage newGroupPage;
     private GroupManagementPage groupManagementPage;
+    private static Go go;
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
     @MethodSource("groupCredentialsProvider")
     void checkIfNewGroupCanBeCreated(final String identifier, final String displayName) {
         //given:
-        driver.get(envConfLoader.getNewGroupPanel());
+        //driver.get(envConfLoader.getNewGroupPanel());
+        go.to(Pages.NEW_GROUP_PAGE);
 
         //when:
         newGroupPage = new NewGroupPage(driver);
@@ -43,7 +43,9 @@ public class ManagingGroupTest {
         groupManagementPage = new GroupManagementPage(driver);
         groupManagementPage.groupNameXPath(displayName, identifier);
 
+
         driver.get(envConfLoader.getGroupManagementPage());
+        //go.to(Pages.GROUP_MANAGEMENT_PAGE);
         driver.navigate().refresh();
 
         //then
@@ -76,9 +78,11 @@ public class ManagingGroupTest {
 
     @BeforeAll
     public static void beforeAll() {
-
         driver = envConfLoader.getDriver();
-        driver.get(envConfLoader.urlBeginning());
+
+        go = new Go(driver);
+        go.to(Pages.LOGIN_PAGE);
+        //driver.get(envConfLoader.urlBeginning());
 
         loginPage = new LoginPage(driver);
         loginPage.typeUsername(userConfLoader.getUserLogin());
@@ -94,8 +98,8 @@ public class ManagingGroupTest {
 
     private static Stream<Arguments> groupCredentialsProvider() {
         return Stream.of(
-                Arguments.of("Group", "NewGroup"),
-                Arguments.of("DC", "MARVEL")
+                Arguments.of("Marvel Fans", "Marvel"),
+                Arguments.of("DC Fans", "DC")
         );
     }
 }
