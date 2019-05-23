@@ -1,6 +1,7 @@
 package automation.tests;
 
 import automation.pages.GroupManagementPage;
+import automation.pages.HomePage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
 import automation.utils.loaders.EnvironmentConfigLoader;
@@ -26,8 +27,6 @@ public class ManagingGroupTest {
 
     private static Go go;
     private static WebDriver driver;
-    private static LoginPage loginPage;
-    private static UserConfigLoader userConfLoader = new UserConfigLoader("user");
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
     private NewGroupPage newGroupPage;
     private GroupManagementPage groupManagementPage;
@@ -46,13 +45,11 @@ public class ManagingGroupTest {
         newGroupPage.submitCreateGroupButton();
 
         groupManagementPage = new GroupManagementPage(driver);
-        groupManagementPage.groupNameXPath(displayName, identifier);
+        groupManagementPage.setGroupIdentifier(displayName, identifier);
 
         go.to(Pages.BROWSE_GROUPS_PAGE);
 
-        waitForXpath(identifier, displayName);
-
-        System.out.println(groupManagementPage.getGroupInfo());
+        waitForXpath(groupManagementPage.getGroupIdentifier());
 
         //then
         assertEquals(String.format("%s (%s)", displayName, identifier), groupManagementPage.getGroupName(),
@@ -71,11 +68,9 @@ public class ManagingGroupTest {
         editButton.click();
         WebElement nameSpan = driver.findElement(By.xpath("//span[contains(text(),'SomeGroup with updated name')]"));
 
-        waitForXpath("Some", "Group with updated name");
+        //waitForXpath();
         String nameFromNameSpan = nameSpan.getText();
         System.out.println(nameFromNameSpan);
-
-        /*assertEquals("SomeGroup with updated name", nameFromNameSpan, "Group name doesn't match");*/
 
     }
 
@@ -93,7 +88,7 @@ public class ManagingGroupTest {
 
     @BeforeEach
     void beforeEach() {
-        driver.get(envConfLoader.getGroupManagementPage());
+        go.to(Pages.GROUP_MANAGEMENT_PAGE);
     }
 
     @BeforeAll
@@ -103,11 +98,8 @@ public class ManagingGroupTest {
         go = new Go(driver);
         go.to(Pages.LOGIN_PAGE);
 
-        //todo: make this DRY
-        loginPage = new LoginPage(driver);
-        loginPage.typeUsername(userConfLoader.getUserLogin());
-        loginPage.typePassword(userConfLoader.getUserPassword());
-        loginPage.submitLogin();
+        UserConfigLoader userConfLoader = new UserConfigLoader("user");
+        new LoginPage(driver).logUser(driver, userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
     }
 
     @AfterAll
@@ -117,13 +109,12 @@ public class ManagingGroupTest {
 
     private static Stream<Arguments> groupCredentialsProvider() {
         return Stream.of(
-                Arguments.of("Mallrats", "Rats from mall")
+                Arguments.of("Jay&SilentBob", "Jay & Silent Bob")
         );
     }
 
-    private void waitForXpath(String identifier, String displayName) {
+    private void waitForXpath(By pathToElement) {
         WebDriverWait wait = new WebDriverWait(driver, 2);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pathToElement));
     }
 }
