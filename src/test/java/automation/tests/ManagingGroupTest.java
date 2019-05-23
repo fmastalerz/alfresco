@@ -1,9 +1,6 @@
 package automation.tests;
 
-import automation.pages.GroupManagementPage;
-import automation.pages.HomePage;
-import automation.pages.LoginPage;
-import automation.pages.NewGroupPage;
+import automation.pages.*;
 import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.Go;
 import automation.utils.loaders.Pages;
@@ -59,19 +56,14 @@ public class ManagingGroupTest {
     @DisplayName("TC02 - Existing group can be edited")
     @Test
     void checkIfGroupCanBeEdited() {
-        //todo: re-write this
 
-        driver.get("http://127.0.0.1:8080/share/page/console/admin-console/groups#state=panel%3Dupdate%26group%3DSome");
-        WebElement inputField = driver.findElement(By.id("page_x002e_ctool_x002e_admin-console_x0023_default-update-displayname"));
-        inputField.sendKeys(" with updated name");
-        WebElement editButton = driver.findElement(By.id("page_x002e_ctool_x002e_admin-console_x0023_default-updategroup-save-button-button"));
-        editButton.click();
-        WebElement nameSpan = driver.findElement(By.xpath("//span[contains(text(),'SomeGroup with updated name')]"));
+        go.to(Pages.SOME_GROUP_EDIT_PAGE);
+
+        UpdateGroupPage updateGroupPage = new UpdateGroupPage(driver);
+        updateGroupPage.editGroupName(" with updated name");
+        updateGroupPage.clickUpdateButton();
 
         //waitForXpath();
-        String nameFromNameSpan = nameSpan.getText();
-        System.out.println(nameFromNameSpan);
-
     }
 
     @DisplayName("TC03 - Existing group can be removed")
@@ -104,7 +96,7 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       driver.quit();
+       //driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {
