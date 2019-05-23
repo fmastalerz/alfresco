@@ -52,7 +52,7 @@ public class ManagingGroupTest {
     @DisplayName("TC02 - Existing group can be edited")
     @ParameterizedTest
     @MethodSource("groupDisplayNameEditText")
-    void checkIfGroupCanBeEdited(String displayName, String identifier, String editText) {
+    void checkIfGroupCanBeEdited(final String displayName, final String identifier, final String editText) {
         //given:
         // todo: do it in the way which allow to put group name dynamically
         go.to(Pages.SOME_GROUP_EDIT_PAGE);
