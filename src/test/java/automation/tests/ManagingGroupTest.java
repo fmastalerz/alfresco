@@ -26,7 +26,7 @@ public class ManagingGroupTest {
     private static WebDriver driver;
     private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
     private NewGroupPage newGroupPage;
-    private GroupManagementPage groupManagementPage;
+    private BrowseGroupsPanel browseGroupsPanel;
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
@@ -41,29 +41,39 @@ public class ManagingGroupTest {
         newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
 
-        groupManagementPage = new GroupManagementPage(driver);
-        groupManagementPage.setGroupIdentifier(displayName, identifier);
+        browseGroupsPanel = new BrowseGroupsPanel(driver);
+        browseGroupsPanel.setPathToGroupCredentials(displayName, identifier);
 
-        go.to(Pages.BROWSE_GROUPS_PAGE);
-
-        waitForXpath(groupManagementPage.getGroupIdentifier());
+        waitForElement(browseGroupsPanel.getGroupCredentials());
 
         //then
-        assertEquals(String.format("%s (%s)", displayName, identifier), groupManagementPage.getGroupName(),
+        assertEquals(String.format("%s (%s)", displayName, identifier), browseGroupsPanel.getGroupName(),
                 "Group 'display name' and/or 'identifier' are not the same");
     }
 
     @DisplayName("TC02 - Existing group can be edited")
-    @Test
-    void checkIfGroupCanBeEdited() {
+    @ParameterizedTest
+    @MethodSource("groupDisplayNameEditText")
+    void checkIfGroupCanBeEdited(String displayName, String identifier, String editText) {
 
         go.to(Pages.SOME_GROUP_EDIT_PAGE);
 
         UpdateGroupPage updateGroupPage = new UpdateGroupPage(driver);
-        updateGroupPage.editGroupName(" with updated name");
+
+        waitForElement(updateGroupPage.getEditGroupInputField());
+
+        updateGroupPage.editGroupName(editText);
         updateGroupPage.clickUpdateButton();
 
-        //waitForXpath();
+        browseGroupsPanel = new BrowseGroupsPanel(driver);
+        String groupEditedCredentials = String.format("%s%s", displayName, editText);
+        browseGroupsPanel.setPathToGroupCredentials(groupEditedCredentials, identifier);
+
+        waitForElement(browseGroupsPanel.getGroupCredentials());
+
+        String groupNewCredentials = String.format("%s%s (%s)", displayName, editText, identifier);
+        assertEquals(groupNewCredentials, browseGroupsPanel.getGroupName(),"Group names don't match");
+
     }
 
     @DisplayName("TC03 - Existing group can be removed")
@@ -105,8 +115,20 @@ public class ManagingGroupTest {
         );
     }
 
-    private void waitForXpath(By pathToElement) {
-        WebDriverWait wait = new WebDriverWait(driver, 2);
+    private static Stream<Arguments> groupDisplayNameEditText() {
+        return Stream.of(
+                Arguments.of("SomeGroup", "Some", " with updated name")
+        );
+    }
+
+    //todo: make this one method
+    private void waitForElement(By pathToElement) {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(pathToElement));
+    }
+
+    private void waitForElement(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

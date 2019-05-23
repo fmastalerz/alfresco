@@ -9,7 +9,7 @@ public class UpdateGroupPage extends PageObject {
     private WebElement editGroupInputField;
 
     @FindBy(id = "page_x002e_ctool_x002e_admin-console_x0023_default-updategroup-save-button-button")
-    private WebElement editGroupButton;
+    private WebElement saveChangesButton;
 
     @FindBy(id = "//span[contains(text(),'SomeGroup with updated name')]")
     private WebElement updatedGroupNameElement;
@@ -23,8 +23,12 @@ public class UpdateGroupPage extends PageObject {
         return this;
     }
 
+    public WebElement getEditGroupInputField() {
+        return editGroupInputField;
+    }
+
     public void clickUpdateButton() {
-        editGroupButton.click();
+        saveChangesButton.click();
     }
 
 }
