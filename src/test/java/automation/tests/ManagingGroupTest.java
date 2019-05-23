@@ -24,8 +24,6 @@ public class ManagingGroupTest {
 
     private static Go go;
     private static WebDriver driver;
-    private static EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
-    private NewGroupPage newGroupPage;
     private BrowseGroupsPanel browseGroupsPanel;
 
     @DisplayName("TC01 - New group can be created")
@@ -36,7 +34,7 @@ public class ManagingGroupTest {
         go.to(Pages.NEW_GROUP_PAGE);
 
         //when:
-        newGroupPage = new NewGroupPage(driver);
+        NewGroupPage newGroupPage = new NewGroupPage(driver);
         newGroupPage.typeIdentifier(identifier);
         newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
@@ -103,6 +101,7 @@ public class ManagingGroupTest {
 
     @BeforeAll
     public static void beforeAll() {
+        EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
         driver = envConfLoader.getDriver();
 
         go = new Go(driver);
@@ -114,7 +113,7 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       //driver.quit();
+       driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {
