@@ -55,9 +55,11 @@ public class ManagingGroupTest {
     @ParameterizedTest
     @MethodSource("groupDisplayNameEditText")
     void checkIfGroupCanBeEdited(String displayName, String identifier, String editText) {
-
+        //given:
+        // todo: do it in the way which allow to put group name dynamically
         go.to(Pages.SOME_GROUP_EDIT_PAGE);
 
+        //when:
         UpdateGroupPage updateGroupPage = new UpdateGroupPage(driver);
 
         waitForElement(updateGroupPage.getEditGroupInputField());
@@ -66,13 +68,13 @@ public class ManagingGroupTest {
         updateGroupPage.clickUpdateButton();
 
         browseGroupsPanel = new BrowseGroupsPanel(driver);
-        String groupEditedCredentials = String.format("%s%s", displayName, editText);
-        browseGroupsPanel.setPathToGroupCredentials(groupEditedCredentials, identifier);
+        browseGroupsPanel.setPathToGroupCredentials(String.format("%s%s", displayName, editText), identifier);
 
         waitForElement(browseGroupsPanel.getGroupCredentials());
 
-        String groupNewCredentials = String.format("%s%s (%s)", displayName, editText, identifier);
-        assertEquals(groupNewCredentials, browseGroupsPanel.getGroupName(),"Group names don't match");
+        //then:
+        assertEquals(String.format("%s%s (%s)", displayName, editText, identifier), browseGroupsPanel.getGroupName(),
+                "Group names don't match");
 
     }
 
@@ -80,12 +82,18 @@ public class ManagingGroupTest {
     @Test
     void checkIfGroupCanBeRemoved() {
         // todo: implement this
+        //given:
+        //when:
+        //then:
     }
 
     @DisplayName("TC04 - Existing group can be removed permanently")
     @Test
     void checkIfGroupCanBeRemovedPermanently() {
         // todo: implement this
+        //given:
+        //when:
+        //then:
     }
 
     @BeforeEach
