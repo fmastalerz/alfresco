@@ -1,6 +1,10 @@
 package automation.tests;
 
-import automation.pages.*;
+import automation.pages.BrowseGroupsPanel;
+import automation.pages.LoginPage;
+import automation.pages.NewGroupPage;
+import automation.pages.UpdateGroupPage;
+import automation.utils.WaitForElement;
 import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.Go;
 import automation.utils.loaders.Pages;
@@ -9,11 +13,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.stream.Stream;
 
@@ -42,7 +42,7 @@ public class ManagingGroupTest {
         browseGroupsPanel = new BrowseGroupsPanel(driver);
         browseGroupsPanel.setPathToGroupCredentials(displayName, identifier);
 
-        waitForElement(browseGroupsPanel.getGroupCredentials());
+        WaitForElement.wait(driver, browseGroupsPanel.getGroupCredentials());
 
         //then
         assertEquals(String.format("%s (%s)", displayName, identifier), browseGroupsPanel.getGroupName(),
@@ -60,7 +60,7 @@ public class ManagingGroupTest {
         //when:
         UpdateGroupPage updateGroupPage = new UpdateGroupPage(driver);
 
-        waitForElement(updateGroupPage.getEditGroupInputField());
+        WaitForElement.wait(driver, updateGroupPage.getEditGroupInputField());
 
         updateGroupPage.editGroupName(editText);
         updateGroupPage.clickUpdateButton();
@@ -68,7 +68,7 @@ public class ManagingGroupTest {
         browseGroupsPanel = new BrowseGroupsPanel(driver);
         browseGroupsPanel.setPathToGroupCredentials(String.format("%s%s", displayName, editText), identifier);
 
-        waitForElement(browseGroupsPanel.getGroupCredentials());
+        WaitForElement.wait(driver,browseGroupsPanel.getGroupCredentials());
 
         //then:
         assertEquals(String.format("%s%s (%s)", displayName, editText, identifier), browseGroupsPanel.getGroupName(),
@@ -126,16 +126,5 @@ public class ManagingGroupTest {
         return Stream.of(
                 Arguments.of("SomeGroup", "Some", " with updated name")
         );
-    }
-
-    //todo: make this one method
-    private void waitForElement(By pathToElement) {
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pathToElement));
-    }
-
-    private void waitForElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

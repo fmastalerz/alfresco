@@ -7,14 +7,14 @@ import org.openqa.selenium.WebElement;
 public class BrowseGroupsPanel {
     private WebDriver driver;
     private By groupCredentials;
-    private WebElement group;
 
     public BrowseGroupsPanel(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void setPathToGroupCredentials(String displayName, String identifier) {
+    public BrowseGroupsPanel setPathToGroupCredentials(String displayName, String identifier) {
         this.groupCredentials = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
+        return this;
     }
 
     public String getGroupName() {
@@ -22,10 +22,11 @@ public class BrowseGroupsPanel {
     }
 
     public By getGroupCredentials() {
-        return this.groupCredentials;
+        return groupCredentials;
     }
 
-    public WebElement getElementWithGroupIdentifier() {
+    public WebElement getGroup() {
+        WebElement group;
         return group = driver.findElement(groupCredentials);
     }
 }
