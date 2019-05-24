@@ -3,7 +3,7 @@ package automation.utils.loaders;
 import org.openqa.selenium.WebDriver;
 
 public class Go {
-    private static WebDriver driver;
+    private WebDriver driver;
 
     public Go(WebDriver driver) {
         this.driver = driver;

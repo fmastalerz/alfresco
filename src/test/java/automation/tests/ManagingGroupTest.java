@@ -13,11 +13,14 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DisplayName("TS01 - Managing groups")
 public class ManagingGroupTest {
@@ -79,10 +82,34 @@ public class ManagingGroupTest {
     @DisplayName("TC03 - Existing group can be removed")
     @Test
     void checkIfGroupCanBeRemoved() {
-        // todo: implement this
-        //given:
-        //when:
-        //then:
+        JavascriptExecutor jsExecutor = ((JavascriptExecutor)driver);
+        //wait for elements
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        //find span
+        go.to(Pages.BROWSE_GROUPS_PANEL);
+        WebElement groupSpan = driver.findElement(By.xpath("//*[contains(text(), 'Removable')]/parent::*"));
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", groupSpan);
+
+        //points on remove button in span
+        WebElement removeButton =
+                driver.findElement(By.xpath("//a[@class='yui-columnbrowser-item groups-item-group']//span[contains(text(),'RemovableGroup')]/following-sibling::span[1]/span[@class='groups-delete-button']"));
+        jsExecutor.executeScript("arguments[0].click();", removeButton);
+
+        // delete button in popup
+        WebElement deleteButton =
+                driver.findElement(By.id("page_x002e_ctool_x002e_admin-console_x0023_default-remove-button-button"));
+        deleteButton.click();
+
+        go.to(Pages.BROWSE_GROUPS_PANEL);
+
+        WaitForElement.wait(driver, By.xpath("//div[@class='yui-columnbrowser-column-body']"));
+        List<WebElement> groups =
+                driver.findElements(By.xpath("//a[@class='yui-columnbrowser-item groups-item-group']"));
+
+        assertFalse(groups.stream().anyMatch(element -> element.getText().equals("RemovableGroup (Removable)")),
+                "Group was found on a list containing all of groups");
+
     }
 
     @DisplayName("TC04 - Existing group can be removed permanently")
@@ -113,7 +140,7 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       driver.quit();
+       //driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {
