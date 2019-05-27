@@ -28,6 +28,8 @@ public class ManagingGroupTest {
     private static Go go;
     private static WebDriver driver;
     private BrowseGroupsPanel browseGroupsPanel;
+    private WaitForElement waitForElement;
+    private static int timeOut;
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
@@ -44,7 +46,7 @@ public class ManagingGroupTest {
 
         browseGroupsPanel.setGroupCredentialsPath(displayName, identifier);
 
-        WaitForElement.wait(driver, browseGroupsPanel.getGroupCredentialsPath());
+        waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
 
         //then
         assertEquals(String.format("%s (%s)", displayName, identifier), browseGroupsPanel.getGroupName(),
@@ -62,14 +64,14 @@ public class ManagingGroupTest {
         //when:
         UpdateGroupPage updateGroupPage = new UpdateGroupPage(driver);
 
-        WaitForElement.wait(driver, updateGroupPage.getEditGroupInputField());
+        waitForElement.wait(updateGroupPage.getEditGroupInputField(), timeOut);
 
         updateGroupPage.editGroupName(editText);
         updateGroupPage.clickUpdateButton();
 
         browseGroupsPanel.setGroupCredentialsPath(String.format("%s%s", displayName, editText), identifier);
 
-        WaitForElement.wait(driver,browseGroupsPanel.getGroupCredentialsPath());
+        waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
 
         //then:
         assertEquals(String.format("%s%s (%s)", displayName, editText, identifier), browseGroupsPanel.getGroupName(),
@@ -101,7 +103,7 @@ public class ManagingGroupTest {
 
         go.to(Pages.BROWSE_GROUPS_PANEL);
 
-        WaitForElement.wait(driver, By.xpath("//div[@class='yui-columnbrowser-column-body']"));
+        waitForElement.wait(By.xpath("//div[@class='yui-columnbrowser-column-body']"), timeOut);
         List<WebElement> groups =
                 driver.findElements(By.xpath("//a[@class='yui-columnbrowser-item groups-item-group']"));
 
@@ -121,8 +123,9 @@ public class ManagingGroupTest {
 
     @BeforeEach
     void beforeEach() {
-        go.to(Pages.GROUP_MANAGEMENT_PAGE);
+        go.to(Pages.ADMIN_TOOLS_GROUPS_PAGE);
         browseGroupsPanel = new BrowseGroupsPanel(driver);
+        waitForElement = new WaitForElement(driver);
     }
 
     @BeforeAll
@@ -135,11 +138,12 @@ public class ManagingGroupTest {
 
         UserConfigLoader userConfLoader = new UserConfigLoader("user");
         new LoginPage(driver).logUser(userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
+        timeOut = envConfLoader.getTimeOut();
     }
 
     @AfterAll
     static void afterAll() {
-       //driver.quit();
+       driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {

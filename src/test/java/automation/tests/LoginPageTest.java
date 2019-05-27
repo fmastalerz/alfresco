@@ -26,8 +26,9 @@ class LoginPageTest {
         String login = userConfLoader.getUserLogin();
         String password = userConfLoader.getUserPassword();
 
-        HomePage homePage = loginPage.logUser(login, password);
+        loginPage.logUser(login, password);
 
+        HomePage homePage = new HomePage(driver);
         String userFullName = userConfLoader.getUserFullName();
         String spanWithUsername = homePage.nameFromSpan();
         String errorMessage = String.format("Span should contain: %s", userConfLoader.getUserFullName());

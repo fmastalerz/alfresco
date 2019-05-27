@@ -23,25 +23,32 @@ public class EnvironmentConfigLoader {
         return new FirefoxDriver();
     }
 
-    public String urlBeginning() {
-        // fixme check nulls
-        // fixme write buider for making URL?! do I still need this if I move urls to Pages enum?
-        String hostname = properties.getProperty("hostname");
-        String port = properties.getProperty("port");
-        String pageURL = properties.getProperty("pageURL");
-        return String.format("http://%s:%s%s", hostname, port, pageURL );
+    // fixme check nulls
+    // fixme write buider for making URL?! do I still need this if I move urls to Pages enum?
+
+    public String getLoginPage() {
+        return properties.getProperty("loginPage");
     }
 
-    public String getGroupManagementPage() {
-        String adminBrowsePanel = properties.getProperty("adminBrowsePanel");
-        String adminToolsPanel = properties.getProperty("adminToolsPanel");
-        return String.format("%s%s%s", urlBeginning(), adminToolsPanel, adminBrowsePanel);
+    public String getAdminToolsGroupPage() {
+        return properties.getProperty("adminToolsGroupsPage");
     }
 
-    public String getNewGroupPanel() {
-        String adminNewGroupPanel = properties.getProperty("adminNewGroupPanel");
-        String adminToolsPanel = properties.getProperty("adminToolsPanel");
-        return String.format("%s%s%s", urlBeginning(), adminToolsPanel, adminNewGroupPanel);
+    public String getBrowseGroupsPanel() {
+        return properties.getProperty("browseGroupsPanel");
+    }
+
+    public String getNewGroupPage() {
+        return properties.getProperty("adminNewGroupPage");
+    }
+
+    public String getSomeGroupEditPage() {
+        return properties.getProperty("someGroupEditPage");
+    }
+
+    public int getTimeOut() {
+        int timeOut = Integer.parseInt(properties.getProperty("timeOut"));
+        return timeOut;
     }
 
 }
