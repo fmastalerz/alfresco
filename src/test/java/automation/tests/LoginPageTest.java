@@ -23,18 +23,20 @@ class LoginPageTest {
     void checkIfLoginDefaultUser() {
         UserConfigLoader userConfLoader = new UserConfigLoader("user");
 
-        HomePage homePage = loginPage.logUser(userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
+        String login = userConfLoader.getUserLogin();
+        String password = userConfLoader.getUserPassword();
+
+        HomePage homePage = loginPage.logUser(login, password);
 
         String userFullName = userConfLoader.getUserFullName();
         String spanWithUsername = homePage.nameFromSpan();
+        String errorMessage = String.format("Span should contain: %s", userConfLoader.getUserFullName());
 
-        String errorMsg = String.format("Span should contain: %s", userConfLoader.getUserFullName());
-        assertEquals(userFullName, spanWithUsername, errorMsg);
+        assertEquals(userFullName, spanWithUsername, errorMessage);
     }
 
     @BeforeEach
     void beforeEach(){
-        go.to(Pages.LOGIN_PAGE);
         loginPage = new LoginPage(driver);
     }
 

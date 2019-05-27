@@ -42,7 +42,6 @@ public class ManagingGroupTest {
         newGroupPage.typeDisplayName(displayName);
         newGroupPage.submitCreateGroupButton();
 
-        browseGroupsPanel = new BrowseGroupsPanel(driver);
         browseGroupsPanel.setGroupCredentialsPath(displayName, identifier);
 
         WaitForElement.wait(driver, browseGroupsPanel.getGroupCredentialsPath());
@@ -68,7 +67,6 @@ public class ManagingGroupTest {
         updateGroupPage.editGroupName(editText);
         updateGroupPage.clickUpdateButton();
 
-        browseGroupsPanel = new BrowseGroupsPanel(driver);
         browseGroupsPanel.setGroupCredentialsPath(String.format("%s%s", displayName, editText), identifier);
 
         WaitForElement.wait(driver,browseGroupsPanel.getGroupCredentialsPath());
@@ -124,6 +122,7 @@ public class ManagingGroupTest {
     @BeforeEach
     void beforeEach() {
         go.to(Pages.GROUP_MANAGEMENT_PAGE);
+        browseGroupsPanel = new BrowseGroupsPanel(driver);
     }
 
     @BeforeAll
