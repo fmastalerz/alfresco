@@ -43,9 +43,9 @@ public class ManagingGroupTest {
         newGroupPage.submitCreateGroupButton();
 
         browseGroupsPanel = new BrowseGroupsPanel(driver);
-        browseGroupsPanel.setPathToGroupCredentials(displayName, identifier);
+        browseGroupsPanel.setGroupCredentialsPath(displayName, identifier);
 
-        WaitForElement.wait(driver, browseGroupsPanel.getGroupCredentials());
+        WaitForElement.wait(driver, browseGroupsPanel.getGroupCredentialsPath());
 
         //then
         assertEquals(String.format("%s (%s)", displayName, identifier), browseGroupsPanel.getGroupName(),
@@ -69,9 +69,9 @@ public class ManagingGroupTest {
         updateGroupPage.clickUpdateButton();
 
         browseGroupsPanel = new BrowseGroupsPanel(driver);
-        browseGroupsPanel.setPathToGroupCredentials(String.format("%s%s", displayName, editText), identifier);
+        browseGroupsPanel.setGroupCredentialsPath(String.format("%s%s", displayName, editText), identifier);
 
-        WaitForElement.wait(driver,browseGroupsPanel.getGroupCredentials());
+        WaitForElement.wait(driver,browseGroupsPanel.getGroupCredentialsPath());
 
         //then:
         assertEquals(String.format("%s%s (%s)", displayName, editText, identifier), browseGroupsPanel.getGroupName(),
@@ -135,7 +135,7 @@ public class ManagingGroupTest {
         go.to(Pages.LOGIN_PAGE);
 
         UserConfigLoader userConfLoader = new UserConfigLoader("user");
-        new LoginPage(driver).logUser(driver, userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
+        new LoginPage(driver).logUser(userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
     }
 
     @AfterAll

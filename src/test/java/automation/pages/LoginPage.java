@@ -35,7 +35,7 @@ public class LoginPage extends PageObject{
         return new HomePage(driver);
     }
 
-    public HomePage logUser(WebDriver driver, String username, String password) {
+    public HomePage logUser(String username, String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeUsername(username);
         loginPage.typePassword(password);

@@ -23,7 +23,7 @@ class LoginPageTest {
     void checkIfLoginDefaultUser() {
         UserConfigLoader userConfLoader = new UserConfigLoader("user");
 
-        HomePage homePage = loginPage.logUser(driver, userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
+        HomePage homePage = loginPage.logUser(userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
 
         String userFullName = userConfLoader.getUserFullName();
         String spanWithUsername = homePage.nameFromSpan();

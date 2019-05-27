@@ -6,27 +6,28 @@ import org.openqa.selenium.WebElement;
 
 public class BrowseGroupsPanel {
     private WebDriver driver;
-    private By groupCredentials;
+    private By groupCredentialsPath;
 
     public BrowseGroupsPanel(WebDriver driver) {
         this.driver = driver;
     }
 
-    public BrowseGroupsPanel setPathToGroupCredentials(String displayName, String identifier) {
-        this.groupCredentials = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
+    public BrowseGroupsPanel setGroupCredentialsPath(String displayName, String identifier) {
+        String path = String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier);
+        this.groupCredentialsPath = By.xpath(path);
         return this;
     }
 
     public String getGroupName() {
-        return driver.findElement(groupCredentials).getText();
+        return driver.findElement(groupCredentialsPath).getText();
     }
 
-    public By getGroupCredentials() {
-        return groupCredentials;
+    public By getGroupCredentialsPath() {
+        return groupCredentialsPath;
     }
 
     public WebElement getGroup() {
         WebElement group;
-        return group = driver.findElement(groupCredentials);
+        return group = driver.findElement(groupCredentialsPath);
     }
 }
