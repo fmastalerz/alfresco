@@ -143,7 +143,7 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       driver.quit();
+       //driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {

@@ -1,7 +1,6 @@
 package automation.utils.loaders;
 
 public enum Pages {
-    //todo: make it DRY
     LOGIN_PAGE(new EnvironmentConfigLoader("environment").getLoginPage()),
     ADMIN_TOOLS_GROUPS_PAGE(new EnvironmentConfigLoader("environment").getAdminToolsGroupPage()),
     BROWSE_GROUPS_PANEL(new EnvironmentConfigLoader("environment").getBrowseGroupsPanel()),

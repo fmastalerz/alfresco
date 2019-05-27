@@ -1,5 +1,6 @@
 package automation.utils.loaders;
 
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,7 +9,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 public class EnvironmentConfigLoader {
-    private Properties properties;
+    private PropertiesConfiguration properties;
 
     public EnvironmentConfigLoader(String propName) {
         this.properties = PropertiesLoader.load(propName);
@@ -27,28 +28,27 @@ public class EnvironmentConfigLoader {
     // fixme write buider for making URL?! do I still need this if I move urls to Pages enum?
 
     public String getLoginPage() {
-        return properties.getProperty("loginPage");
+        return properties.getString("loginPage");
     }
 
     public String getAdminToolsGroupPage() {
-        return properties.getProperty("adminToolsGroupsPage");
+        return properties.getString("adminToolsGroupsPage");
     }
 
     public String getBrowseGroupsPanel() {
-        return properties.getProperty("browseGroupsPanel");
+        return properties.getString("browseGroupsPanel");
     }
 
     public String getNewGroupPage() {
-        return properties.getProperty("adminNewGroupPage");
+        return properties.getString("adminNewGroupPage");
     }
 
     public String getSomeGroupEditPage() {
-        return properties.getProperty("someGroupEditPage");
+        return properties.getString("someGroupEditPage");
     }
 
     public int getTimeOut() {
-        int timeOut = Integer.parseInt(properties.getProperty("timeOut"));
-        return timeOut;
+        return properties.getInt("timeOut");
     }
 
 }
