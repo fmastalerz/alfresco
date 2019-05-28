@@ -50,53 +50,33 @@ public class ManagingGroupTest {
 
     @DisplayName("TC02 - Existing group can be edited")
     @ParameterizedTest
-    @MethodSource("groupDisplayNameEditText")
-    void checkIfGroupCanBeEdited(final String displayName, final String identifier, final String editText) {
+    @MethodSource("groupNamesAndIdentifierProvider")
+    void checkIfGroupCanBeEdited(final String displayName, final String identifier, final String newDisplayName) {
         //given:
         //todo: better name for getting to <some default url + postfix> ?!
         go.toConcreteURL(Pages.GROUP_EDIT_PAGE, identifier);
 
         //when:
         EditGroupPage editGroupPage = new EditGroupPage(driver);
-
         waitForElement.wait(editGroupPage.getEditGroupInputField(), timeOut);
-
-        //todo: clean this
-        editGroupPage.editGroupName(editText);
-        editGroupPage.clickUpdateButton();
-
-        browseGroupsPanel.setGroupCredentialsPath(String.format("%s%s", displayName, editText), identifier);
-
+        editGroupPage.editDisplayName(newDisplayName);
+        browseGroupsPanel.setGroupCredentialsPath(newDisplayName, identifier);
         waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
 
-
         //then:
-        assertEquals(String.format("%s%s (%s)", displayName, editText, identifier), browseGroupsPanel.getGroupName(),
+        assertEquals(String.format("%s (%s)",newDisplayName, identifier), browseGroupsPanel.getGroupName(),
                 "Group names don't match");
-
     }
 
     @DisplayName("TC03 - Existing group can be removed")
-    @Test
-    void checkIfGroupCanBeRemoved() {
-        JavascriptExecutor jsExecutor = ((JavascriptExecutor)driver);
-        //wait for elements
+    @ParameterizedTest
+    @MethodSource("groupNameProvider")
+    void checkIfGroupCanBeRemoved(String groupToRemove) {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        //find span
         go.to(Pages.BROWSE_GROUPS_PANEL);
-        WebElement groupSpan = driver.findElement(By.xpath("//*[contains(text(), 'Removable')]/parent::*"));
-        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", groupSpan);
 
-        //points on remove button in span
-        WebElement removeButton =
-                driver.findElement(By.xpath("//a[@class='yui-columnbrowser-item groups-item-group']//span[contains(text(),'RemovableGroup')]/following-sibling::span[1]/span[@class='groups-delete-button']"));
-        jsExecutor.executeScript("arguments[0].click();", removeButton);
-
-        // delete button in popup
-        WebElement deleteButton =
-                driver.findElement(By.id("page_x002e_ctool_x002e_admin-console_x0023_default-remove-button-button"));
-        deleteButton.click();
+        browseGroupsPanel.removeGroup(groupToRemove);
 
         go.to(Pages.BROWSE_GROUPS_PANEL);
 
@@ -136,6 +116,8 @@ public class ManagingGroupTest {
         UserConfigLoader userConfLoader = new UserConfigLoader("user");
         new LoginPage(driver).logUser(userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
         timeOut = envConfLoader.getTimeOut();
+
+
     }
 
     @AfterAll
@@ -149,9 +131,15 @@ public class ManagingGroupTest {
         );
     }
 
-    private static Stream<Arguments> groupDisplayNameEditText() {
+    private static Stream<Arguments> groupNamesAndIdentifierProvider() {
         return Stream.of(
-                Arguments.of("SomeGroup", "Some", " with updated name")
+                Arguments.of("SomeGroup", "Some", "SomeGroup with updated name")
+        );
+    }
+
+    private static Stream<Arguments> groupNameProvider() {
+        return Stream.of(
+                Arguments.of("SomeGroup")
         );
     }
 }

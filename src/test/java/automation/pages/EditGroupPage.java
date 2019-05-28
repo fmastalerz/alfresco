@@ -18,9 +18,15 @@ public class EditGroupPage extends PageObject {
         super(driver);
     }
 
-    public EditGroupPage editGroupName(String editText) {
-        editGroupInputField.sendKeys(editText);
+    public EditGroupPage addNewDisplayName(String newDisplayName) {
+        editGroupInputField.sendKeys(newDisplayName);
         return this;
+    }
+
+    public void editDisplayName(String newDisplayName) {
+        editGroupInputField.clear();
+        addNewDisplayName(newDisplayName);
+        clickUpdateButton();
     }
 
     public WebElement getEditGroupInputField() {

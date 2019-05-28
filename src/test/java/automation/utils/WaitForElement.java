@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitForElement {
+    //todo: fix issues with this
     private WebDriver driver;
 
     public WaitForElement(WebDriver driver) {
