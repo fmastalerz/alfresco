@@ -70,8 +70,9 @@ public class ManagingGroupTest {
 
     @DisplayName("TC03 - Existing group can be removed")
     @ParameterizedTest
-    @MethodSource("groupNameProvider")
+    @MethodSource("groupToRemoveProvider")
     void checkIfGroupCanBeRemoved(String groupToRemove) {
+        //fix: clear the mess
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         go.to(Pages.BROWSE_GROUPS_PANEL);
@@ -137,9 +138,9 @@ public class ManagingGroupTest {
         );
     }
 
-    private static Stream<Arguments> groupNameProvider() {
+    private static Stream<Arguments> groupToRemoveProvider() {
         return Stream.of(
-                Arguments.of("SomeGroup")
+                Arguments.of("RemovableGroup (Removable)")
         );
     }
 }
