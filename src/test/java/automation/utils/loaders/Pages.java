@@ -5,7 +5,7 @@ public enum Pages {
     ADMIN_TOOLS_GROUPS_PAGE(new EnvironmentConfigLoader("environment").getAdminToolsGroupPage()),
     BROWSE_GROUPS_PANEL(new EnvironmentConfigLoader("environment").getBrowseGroupsPanel()),
     NEW_GROUP_PAGE(new EnvironmentConfigLoader("environment").getNewGroupPage()),
-    SOME_GROUP_EDIT_PAGE(new EnvironmentConfigLoader("environment").getSomeGroupEditPage());
+    GROUP_EDIT_PAGE(new EnvironmentConfigLoader("environment").getGroupEditPage());
 
     private final String url;
 
@@ -15,5 +15,10 @@ public enum Pages {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getConcreteUrl(String address) {
+        String newUrl = url + address;
+        return newUrl;
     }
 }

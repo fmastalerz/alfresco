@@ -43,12 +43,11 @@ public class EnvironmentConfigLoader {
         return properties.getString("adminNewGroupPage");
     }
 
-    public String getSomeGroupEditPage() {
-        return properties.getString("someGroupEditPage");
-    }
-
     public int getTimeOut() {
         return properties.getInt("timeOut");
     }
 
+    public String getGroupEditPage() {
+        return properties.getString("groupEditPage");
+    }
 }

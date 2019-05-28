@@ -3,7 +3,7 @@ package automation.tests;
 import automation.pages.BrowseGroupsPanel;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
-import automation.pages.UpdateGroupPage;
+import automation.pages.EditGroupPage;
 import automation.utils.WaitForElement;
 import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.Go;
@@ -39,13 +39,8 @@ public class ManagingGroupTest {
         go.to(Pages.NEW_GROUP_PAGE);
 
         //when:
-        NewGroupPage newGroupPage = new NewGroupPage(driver);
-        newGroupPage.typeIdentifier(identifier);
-        newGroupPage.typeDisplayName(displayName);
-        newGroupPage.submitCreateGroupButton();
-
+        new NewGroupPage(driver).createGroup(displayName, identifier);
         browseGroupsPanel.setGroupCredentialsPath(displayName, identifier);
-
         waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
 
         //then
@@ -58,20 +53,22 @@ public class ManagingGroupTest {
     @MethodSource("groupDisplayNameEditText")
     void checkIfGroupCanBeEdited(final String displayName, final String identifier, final String editText) {
         //given:
-        // todo: do it in the way which allow to put group name dynamically
-        go.to(Pages.SOME_GROUP_EDIT_PAGE);
+        //todo: better name for getting to <some default url + postfix> ?!
+        go.toConcreteURL(Pages.GROUP_EDIT_PAGE, identifier);
 
         //when:
-        UpdateGroupPage updateGroupPage = new UpdateGroupPage(driver);
+        EditGroupPage editGroupPage = new EditGroupPage(driver);
 
-        waitForElement.wait(updateGroupPage.getEditGroupInputField(), timeOut);
+        waitForElement.wait(editGroupPage.getEditGroupInputField(), timeOut);
 
-        updateGroupPage.editGroupName(editText);
-        updateGroupPage.clickUpdateButton();
+        //todo: clean this
+        editGroupPage.editGroupName(editText);
+        editGroupPage.clickUpdateButton();
 
         browseGroupsPanel.setGroupCredentialsPath(String.format("%s%s", displayName, editText), identifier);
 
         waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
+
 
         //then:
         assertEquals(String.format("%s%s (%s)", displayName, editText, identifier), browseGroupsPanel.getGroupName(),
@@ -107,9 +104,9 @@ public class ManagingGroupTest {
         List<WebElement> groups =
                 driver.findElements(By.xpath("//a[@class='yui-columnbrowser-item groups-item-group']"));
 
-        assertFalse(groups.stream().anyMatch(element -> element.getText().equals("RemovableGroup (Removable)")),
-                "Group was found on a list containing all of groups");
+        boolean isFound = groups.stream().anyMatch(element -> element.getText().equals("RemovableGroup (Removable)"));
 
+        assertFalse(isFound, "Group was found on a list containing all of groups");
     }
 
     @DisplayName("TC04 - Existing group can be removed permanently")
@@ -143,7 +140,7 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       //driver.quit();
+       //   driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {

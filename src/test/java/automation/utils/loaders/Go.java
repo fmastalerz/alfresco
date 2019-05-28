@@ -12,4 +12,8 @@ public class Go {
     public void to(Pages page) {
         driver.get(page.getUrl());
     }
+
+    public void toConcreteURL(Pages page, String address) {
+        driver.get(page.getConcreteUrl(address));
+    }
 }
