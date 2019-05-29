@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class BrowseGroupsPanel extends PageObject{
     private By groupCredentials;
@@ -31,9 +30,7 @@ public class BrowseGroupsPanel extends PageObject{
     }
 
     public void setNewGroupSpan(String displayName, String identifier) {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        By xpath = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
-        this.newGroupSpan = driver.findElement(xpath);
+        this.newGroupSpan = driver.findElement(By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier)));
     }
 
     public String getNewGroupName() {
@@ -42,13 +39,8 @@ public class BrowseGroupsPanel extends PageObject{
     }
 
     public BrowseGroupsPanel setGroupCredentialsPath(String displayName, String identifier) {
-
         this.groupCredentials = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
         return this;
-    }
-
-    public By getGroupCredentialsPath() {
-        return groupCredentials;
     }
 
     public String getGroupName() {
