@@ -7,9 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class BrowseGroupsPanel extends PageObject{
     private By groupCredentials;
+
+    private WebElement newGroupSpan;
 
     @FindBy(id = "page_x002e_ctool_x002e_admin-console_x0023_default-remove-button-button")
     private WebElement deleteButton;
@@ -18,8 +21,8 @@ public class BrowseGroupsPanel extends PageObject{
     @FindBy(xpath = "//div[@class='yui-columnbrowser-column-body']")
     private WebElement groupsTable;
 
-    @FindBy(xpath = "//a[@class='yui-columnbrowser-item groups-item-group']")
-    private List<WebElement> groups;
+    @FindBy(xpath = "//a[@class='yui-columnbrowser-item spansWithGroups-item-group']")
+    private List<WebElement> spansWithGroups;
 
     private By xPathToGroupsTable = By.xpath("//div[@class='yui-columnbrowser-column-body']");
 
@@ -27,7 +30,19 @@ public class BrowseGroupsPanel extends PageObject{
         super(driver);
     }
 
+    public void setNewGroupSpan(String displayName, String identifier) {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        By xpath = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
+        this.newGroupSpan = driver.findElement(xpath);
+    }
+
+    public String getNewGroupName() {
+        String name = newGroupSpan.getText();
+        return name;
+    }
+
     public BrowseGroupsPanel setGroupCredentialsPath(String displayName, String identifier) {
+
         this.groupCredentials = By.xpath(String.format("//span[contains(text(),'%s (%s)')]", displayName, identifier));
         return this;
     }
@@ -48,7 +63,7 @@ public class BrowseGroupsPanel extends PageObject{
     }
 
     public WebElement getRemoveGroupButton(String groupToRemove) {
-        String path = String.format("//a[@class='yui-columnbrowser-item groups-item-group']//span[contains(text(),'%s')]/following-sibling::span[1]/span[@class='groups-delete-button']", groupToRemove);
+        String path = String.format("//a[@class='yui-columnbrowser-item spansWithGroups-item-group']//span[contains(text(),'%s')]/following-sibling::span[1]/span[@class='spansWithGroups-delete-button']", groupToRemove);
         WebElement removeButton = driver.findElement(By.xpath(path));
         return removeButton;
     }
@@ -58,7 +73,7 @@ public class BrowseGroupsPanel extends PageObject{
     }
 
     public boolean isGroupOnList(String groupToRemove) {
-        boolean isFound = groups.stream().anyMatch(element -> element.getText().equals(groupToRemove));
+        boolean isFound = spansWithGroups.stream().anyMatch(element -> element.getText().equals(groupToRemove));
         return isFound;
     }
 

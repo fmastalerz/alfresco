@@ -16,6 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
@@ -42,11 +43,10 @@ public class ManagingGroupTest {
 
         //when:
         new NewGroupPage(driver).createGroup(displayName, identifier);
-        browseGroupsPanel.setGroupCredentialsPath(displayName, identifier);
-        waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
+        browseGroupsPanel.setNewGroupSpan(displayName, identifier);
 
-        //then
-        assertEquals(String.format("%s (%s)", displayName, identifier), browseGroupsPanel.getGroupName(),
+        //then:
+        assertEquals(String.format("%s (%s)", displayName, identifier), browseGroupsPanel.getNewGroupName(),
                 "Group 'display name' and/or 'identifier' are not the same");
     }
 
@@ -63,7 +63,8 @@ public class ManagingGroupTest {
         waitForElement.wait(editGroupPage.getEditGroupInputField(), timeOut);
         editGroupPage.editDisplayName(newDisplayName);
         browseGroupsPanel.setGroupCredentialsPath(newDisplayName, identifier);
-        waitForElement.wait(browseGroupsPanel.getGroupCredentialsPath(), timeOut);
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         //then:
         assertEquals(String.format("%s (%s)",newDisplayName, identifier), browseGroupsPanel.getGroupName(),
