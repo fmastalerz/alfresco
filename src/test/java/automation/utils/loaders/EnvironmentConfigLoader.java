@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Objects;
-import java.util.Properties;
 
 public class EnvironmentConfigLoader {
     private PropertiesConfiguration properties;
@@ -23,9 +22,6 @@ public class EnvironmentConfigLoader {
         }
         return new FirefoxDriver();
     }
-
-    // fixme check nulls
-    // fixme write buider for making URL?! do I still need this if I move urls to Pages enum?
 
     public String getLoginPage() {
         return properties.getString("loginPage");

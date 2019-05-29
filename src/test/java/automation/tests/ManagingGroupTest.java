@@ -1,9 +1,9 @@
 package automation.tests;
 
 import automation.pages.BrowseGroupsPanel;
+import automation.pages.EditGroupPage;
 import automation.pages.LoginPage;
 import automation.pages.NewGroupPage;
-import automation.pages.EditGroupPage;
 import automation.utils.WaitForElement;
 import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.Go;
@@ -13,9 +13,10 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -30,6 +31,7 @@ public class ManagingGroupTest {
     private BrowseGroupsPanel browseGroupsPanel;
     private WaitForElement waitForElement;
     private static int timeOut;
+    private static JavascriptExecutor jsExecutor;
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
@@ -54,7 +56,7 @@ public class ManagingGroupTest {
     void checkIfGroupCanBeEdited(final String displayName, final String identifier, final String newDisplayName) {
         //given:
         //todo: better name for getting to <some default url + postfix> ?!
-        go.toConcreteURL(Pages.GROUP_EDIT_PAGE, identifier);
+        go.toConcretePage(Pages.GROUP_EDIT_PAGE, identifier);
 
         //when:
         EditGroupPage editGroupPage = new EditGroupPage(driver);
@@ -72,31 +74,47 @@ public class ManagingGroupTest {
     @ParameterizedTest
     @MethodSource("groupToRemoveProvider")
     void checkIfGroupCanBeRemoved(String groupToRemove) {
-        //fix: clear the mess
+        //given
+        //todo: get rid off driver.manage()...
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
         go.to(Pages.BROWSE_GROUPS_PANEL);
 
-        browseGroupsPanel.removeGroup(groupToRemove);
-
+        //when:
+        browseGroupsPanel.removeGroup(jsExecutor, groupToRemove);
         go.to(Pages.BROWSE_GROUPS_PANEL);
 
-        waitForElement.wait(By.xpath("//div[@class='yui-columnbrowser-column-body']"), timeOut);
-        List<WebElement> groups =
-                driver.findElements(By.xpath("//a[@class='yui-columnbrowser-item groups-item-group']"));
+        //todo: why this is working:
+        waitForElement.wait(By.xpath("//div[@class='yui-columnbrowser-column-body']"),timeOut);
+        // but this is not:
+        //waitForElement.wait(browseGroupsPanel.getxPathToGroupsTable(), timeOut);
+        // and this is neither:
+        //waitForElement.wait(browseGroupsPanel.getGroupsTable(), timeOut);
 
-        boolean isFound = groups.stream().anyMatch(element -> element.getText().equals("RemovableGroup (Removable)"));
-
-        assertFalse(isFound, "Group was found on a list containing all of groups");
+        //then:
+        assertFalse(browseGroupsPanel.isGroupOnList(groupToRemove), "Group was found on a list containing all of groups");
     }
 
     @DisplayName("TC04 - Existing group can be removed permanently")
-    @Test
-    void checkIfGroupCanBeRemovedPermanently() {
-        // todo: implement this
+    @ParameterizedTest
+    @MethodSource("permanentRemoveGroupProvider")
+    void checkIfGroupCanBeRemovedPermanently(String secondToRemove) {
+        // todo: in fact TC03 and TC04 do same thing. Difference is in relations between groups inside app
+        //  - should I extract whole code from 'given' and 'when' of both methods to another, single method?!
+        // or can I leave it like it is now?
+
         //given:
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        go.to(Pages.BROWSE_GROUPS_PANEL);
+
         //when:
+        browseGroupsPanel.removeGroup(jsExecutor, secondToRemove);
+        go.to(Pages.BROWSE_GROUPS_PANEL);
+        waitForElement.wait(By.xpath("//div[@class='yui-columnbrowser-column-body']"), timeOut);
+
+        boolean isFound = browseGroupsPanel.isGroupOnList(secondToRemove);
+
         //then:
+        assertFalse(isFound, "Group was found on a list containing all of groups");
     }
 
     @BeforeEach
@@ -118,12 +136,12 @@ public class ManagingGroupTest {
         new LoginPage(driver).logUser(userConfLoader.getUserLogin(), userConfLoader.getUserPassword());
         timeOut = envConfLoader.getTimeOut();
 
-
+        jsExecutor = ((JavascriptExecutor)driver);
     }
 
     @AfterAll
     static void afterAll() {
-       //   driver.quit();
+       driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {
@@ -141,6 +159,12 @@ public class ManagingGroupTest {
     private static Stream<Arguments> groupToRemoveProvider() {
         return Stream.of(
                 Arguments.of("RemovableGroup (Removable)")
+        );
+    }
+
+    private static Stream<Arguments> permanentRemoveGroupProvider() {
+        return Stream.of(
+                Arguments.of("Second")
         );
     }
 }
