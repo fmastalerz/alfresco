@@ -1,0 +1,5 @@
+TS13 - Verify group remove button:
+
+TC01 - Remove 1 group
+TC02 - Remove 101 groups
+// I choose that user can be assigned only to 100 groups
