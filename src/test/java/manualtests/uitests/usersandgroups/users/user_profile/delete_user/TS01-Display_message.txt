@@ -1,3 +1,0 @@
-TS01 - Verify delete popup message:
-
-TC01 - Display message

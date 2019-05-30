@@ -1,3 +1,0 @@
-TS02 - Verify 'Delete User' button:
-
-TC01 - Click button

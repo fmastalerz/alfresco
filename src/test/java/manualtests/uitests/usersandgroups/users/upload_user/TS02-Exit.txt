@@ -1,3 +1,0 @@
-TS02 - Verify popup exit button:
-
-TC01 - Click button

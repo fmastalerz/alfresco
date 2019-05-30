@@ -1,3 +1,0 @@
-TS02 - Verify edit group button:
-
-TC01 - Click button

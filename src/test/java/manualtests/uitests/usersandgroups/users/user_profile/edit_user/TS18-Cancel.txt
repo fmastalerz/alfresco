@@ -1,3 +1,0 @@
-TS18 - Verify 'Cancel' button:
-
-TC01 - Click button

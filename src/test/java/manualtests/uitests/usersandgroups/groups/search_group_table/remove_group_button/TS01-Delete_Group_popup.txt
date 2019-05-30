@@ -1,3 +1,0 @@
-TS01 - Verify 'Delete Group' popup:
-
-TC01 - Display popup

@@ -1,3 +1,0 @@
-TS03 - Verify user profile:
-
-TC01 - Display profile

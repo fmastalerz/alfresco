@@ -1,3 +1,0 @@
-TS03 - Verify 'Delete' button:
-
-TC01 - Click button

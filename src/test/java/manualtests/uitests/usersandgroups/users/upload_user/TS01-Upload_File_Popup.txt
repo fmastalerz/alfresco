@@ -1,3 +1,0 @@
-TS01 - Verify that 'Upload File' popup:
-
-TC01 - Popup is displayed

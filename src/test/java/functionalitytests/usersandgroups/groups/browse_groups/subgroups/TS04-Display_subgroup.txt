@@ -1,3 +1,0 @@
-TS04 - Verify displaying subgroups:
-
-TC01 - User can display subgroups view

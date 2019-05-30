@@ -1,4 +1,0 @@
-TS05 - Verify displaying browse groups view:
-
-TC01 - User can display all groups including system groups
-TC02 - User can display all groups excluding system groups

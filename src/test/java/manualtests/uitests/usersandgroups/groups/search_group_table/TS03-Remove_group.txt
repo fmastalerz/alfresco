@@ -1,3 +1,0 @@
-TS03 - Verify remove group button:
-
-TC01 - Click button
