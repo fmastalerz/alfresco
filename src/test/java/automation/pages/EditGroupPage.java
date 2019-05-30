@@ -1,40 +1,36 @@
 package automation.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EditGroupPage extends PageObject {
-    @FindBy(id = "page_x002e_ctool_x002e_admin-console_x0023_default-update-displayname")
-    private WebElement editGroupInputField;
 
-    @FindBy(id = "page_x002e_ctool_x002e_admin-console_x0023_default-updategroup-save-button-button")
-    private WebElement saveChangesButton;
+    private By editGroupInputField = By.id("page_x002e_ctool_x002e_admin-console_x0023_default-update-displayname");
+    private By saveChangesButton = By.id("page_x002e_ctool_x002e_admin-console_x0023_default-updategroup-save-button-button");
 
-    @FindBy(id = "//span[contains(text(),'SomeGroup with updated name')]")
-    private WebElement updatedGroupNameElement;
-
-    public EditGroupPage(WebDriver driver) {
-        super(driver);
+    public EditGroupPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
     }
 
-    public EditGroupPage addNewDisplayName(String newDisplayName) {
-        editGroupInputField.sendKeys(newDisplayName);
-        return this;
+
+    public void editGroup(String newDisplayName) {
+        typeNewDispalyName(newDisplayName);
+        clickSaveChangesButton();
     }
 
-    public void editDisplayName(String newDisplayName) {
-        editGroupInputField.clear();
-        addNewDisplayName(newDisplayName);
-        clickUpdateButton();
+    private void clickSaveChangesButton() {
+        //todo: make waits more DRY
+        wait.until(ExpectedConditions.visibilityOfElementLocated(saveChangesButton));
+        driver.findElement(saveChangesButton).click();
+
+
     }
 
-    public WebElement getEditGroupInputField() {
-        return editGroupInputField;
+    private void typeNewDispalyName(String newDisplayName) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(editGroupInputField));
+        driver.findElement(editGroupInputField).clear();
+        driver.findElement(editGroupInputField).sendKeys(newDisplayName);
     }
-
-    public void clickUpdateButton() {
-        saveChangesButton.click();
-    }
-
 }
