@@ -8,6 +8,7 @@ import automation.utils.loaders.EnvironmentConfigLoader;
 import automation.utils.loaders.Go;
 import automation.utils.loaders.Pages;
 import automation.utils.loaders.UserConfigLoader;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +24,8 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 
 @DisplayName("TS01 - Managing groups")
 public class ManagingGroupTest {
@@ -34,7 +38,7 @@ public class ManagingGroupTest {
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
     @MethodSource("groupCredentialsProvider")
-    void checkIfNewGroupCanBeCreated(final String identifier, final String displayName) {
+    void AcheckIfNewGroupCanBeCreated(final String identifier, final String displayName) {
         //given:
         go.to(Pages.NEW_GROUP_PAGE);
 
@@ -44,13 +48,14 @@ public class ManagingGroupTest {
 
         //then:
         assertTrue(browseGroupsPanel.checkIfGroupOnList(displayName, identifier),
-                "New group wan't found on the list");
+                "New group wasn't found on the list");
     }
 
     @DisplayName("TC02 - Existing group can be edited")
     @ParameterizedTest
     @MethodSource("groupNamesAndIdentifierProvider")
-    void checkIfGroupCanBeEdited(final String identifier, final String newDisplayName) {
+    void BcheckIfGroupCanBeEdited(final String identifier, final String newDisplayName) {
+        // todo: getting stale element exception
         //given:
         go.toConcretePage(Pages.GROUP_EDIT_PAGE, identifier);
 
@@ -60,14 +65,13 @@ public class ManagingGroupTest {
 
         //then:
         assertTrue(browseGroupsPanel.checkIfGroupOnList(newDisplayName, identifier),
-                "New group wan't found on the list");
+                "Edited group wasn't found on the list");
     }
 
     @DisplayName("TC03 - Existing group can be removed")
     @ParameterizedTest
     @MethodSource("groupToRemoveProvider")
-    void checkIfGroupCanBeRemoved(final String displayName, final String identifier) {
-        // todo: getting stale element exception
+    void CcheckIfGroupCanBeRemoved(final String displayName, final String identifier) {
         //given:
         go.to(Pages.BROWSE_GROUPS_PANEL);
 
@@ -81,7 +85,7 @@ public class ManagingGroupTest {
     @DisplayName("TC04 - Existing group can be removed permanently")
     @ParameterizedTest
     @MethodSource("permanentRemoveGroupProvider")
-    void checkIfGroupCanBeRemovedPermanently(final String displayName, final String identifier) {
+    void DcheckIfGroupCanBeRemovedPermanently(final String displayName, final String identifier) {
         // TC04 looks like TC03 but relations between groups are different
         // todo: getting stale element exception
         //given:
@@ -119,7 +123,7 @@ public class ManagingGroupTest {
 
     @AfterAll
     static void afterAll() {
-       driver.quit();
+        driver.quit();
     }
 
     private static Stream<Arguments> groupCredentialsProvider() {

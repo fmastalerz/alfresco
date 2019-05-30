@@ -26,25 +26,22 @@ public class BrowseGroupsPanel extends PageObject{
     }
 
     public boolean checkIfGroupOnList(String displayName, String identifier) {
+
         String groupFullName = String.format("%s (%s)", displayName, identifier);
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(groupsTableLocator));
+        findGroupSpan(displayName, identifier);
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(groupsTableLocator));
         wait.until(ExpectedConditions.visibilityOfElementLocated(groupsNamesSpansLocator));
+
+        driver.navigate().refresh();
         List<WebElement> groups = driver.findElements(groupsNamesSpansLocator);
 
-        //todo: stale element reference exception workaround:     - is there easiest and more elegant way to handle this?
-        //turns out that it is not a workaround
-        boolean isFound;
+        System.out.println(groups.size());
+        groups.stream().forEach(group -> System.out.println(group.getText()));
+        System.out.println();
 
-        try {
-            isFound = groups.stream().anyMatch(group -> group.getText().equals(groupFullName));
-        } catch (StaleElementReferenceException e) {
-            isFound = groups.stream().anyMatch(group -> group.getText().equals(groupFullName));
-            e.printStackTrace();
-        }
-
-        return isFound;
+        return groups.stream().anyMatch(group -> group.getText().equals(groupFullName));
     }
 
     public void removeGroup(String displayName, String identifier) {

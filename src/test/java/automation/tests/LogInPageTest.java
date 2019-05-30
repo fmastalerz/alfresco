@@ -20,10 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LogInPageTest {
     private static WebDriver driver;
-    private static Go go;
+    private static WebDriverWait wait;
     private LogInPage loginPage;
-    private  static WebDriverWait wait;
-    private static int timeOut = 5;
 
     @ParameterizedTest
     @MethodSource("credentialsProvider")
@@ -44,8 +42,8 @@ class LogInPageTest {
     static void beforeAll(){
         EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
         driver = envConfLoader.getDriver();
-        wait = new WebDriverWait(driver, timeOut);
-        go = new Go(driver);
+        wait = new WebDriverWait(driver, envConfLoader.getTimeOut());
+        Go go = new Go(driver);
         go.to(Pages.LOGIN_PAGE);
     }
 
