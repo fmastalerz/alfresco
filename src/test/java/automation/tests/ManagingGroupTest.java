@@ -28,8 +28,8 @@ public class ManagingGroupTest {
 
     private static Go go;
     private static WebDriver driver;
-    private BrowseGroupsPanel browseGroupsPanel;
     private static WebDriverWait wait;
+    private static BrowseGroupsPanel browseGroupsPanel;
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
@@ -97,7 +97,6 @@ public class ManagingGroupTest {
     @BeforeEach
     void beforeEach() {
         go.to(Pages.ADMIN_TOOLS_GROUPS_PAGE);
-        browseGroupsPanel = new BrowseGroupsPanel(driver, wait);
     }
 
     @BeforeAll
@@ -114,6 +113,8 @@ public class ManagingGroupTest {
 
         LogInPage logInPage = new LogInPage(driver, wait);
         logInPage.logUser(userConfLoader.getUsername(), userConfLoader.getUserPassword());
+
+        browseGroupsPanel = new BrowseGroupsPanel(driver, wait);
     }
 
     @AfterAll

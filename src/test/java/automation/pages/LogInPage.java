@@ -8,9 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LogInPage extends PageObject{
 
     private By usernameLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-username");
-
     private By passwordLocator  = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-password");
-
     private By loginButtonLocator = By.id("page_x002e_components_x002e_slingshot-login_x0023_default-submit-button");
 
     public LogInPage(WebDriver driver, WebDriverWait wait) {

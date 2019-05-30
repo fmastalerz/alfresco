@@ -1,10 +1,21 @@
 package automation.tests;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import automation.pages.BrowseGroupsPanel;
+import automation.pages.LogInPage;
+import automation.utils.loaders.EnvironmentConfigLoader;
+import automation.utils.loaders.Go;
+import automation.utils.loaders.Pages;
+import automation.utils.loaders.UserConfigLoader;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @DisplayName("TS02 - Verify adding to group")
 public class AddingToGroupTest {
+    private static Go go;
+    private static WebDriver driver;
+    private  static WebDriverWait wait;
+    private BrowseGroupsPanel browseGroupsPanel;
 
     @DisplayName("TC01 - User can be added to group")
     @Test
@@ -45,4 +56,32 @@ public class AddingToGroupTest {
         // click create button
         // check if created
     }
+
+    @BeforeAll
+    public static void beforeAll() {
+        // todo: Dry base config
+        EnvironmentConfigLoader envConfLoader = new EnvironmentConfigLoader("environment");
+
+        driver = envConfLoader.getDriver();
+        wait = new WebDriverWait(driver, envConfLoader.getTimeOut());
+
+        go = new Go(driver);
+        go.to(Pages.LOGIN_PAGE);
+
+        UserConfigLoader userConfLoader = new UserConfigLoader("user");
+
+        LogInPage logInPage = new LogInPage(driver, wait);
+        logInPage.logUser(userConfLoader.getUsername(), userConfLoader.getUserPassword());
+    }
+
+    @BeforeEach
+    public void beforeEach() {
+        go.to(Pages.BROWSE_GROUPS_PANEL);
+    }
+
+    @AfterAll
+    public void afterAll() {
+        driver.quit();
+    }
 }
+
