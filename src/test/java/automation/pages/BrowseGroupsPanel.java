@@ -29,8 +29,6 @@ public class BrowseGroupsPanel extends PageObject{
 
         String groupFullName = String.format("%s (%s)", displayName, identifier);
 
-        findGroupSpan(displayName, identifier);
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(groupsTableLocator));
         wait.until(ExpectedConditions.visibilityOfElementLocated(groupsNamesSpansLocator));
 

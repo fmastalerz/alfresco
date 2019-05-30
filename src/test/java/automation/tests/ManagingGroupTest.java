@@ -29,16 +29,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("TS01 - Managing groups")
 public class ManagingGroupTest {
+    //todo: why 0 in some checkIfGroupOnList()
 
     private static Go go;
     private static WebDriver driver;
     private static WebDriverWait wait;
-    private static BrowseGroupsPanel browseGroupsPanel;
+    private BrowseGroupsPanel browseGroupsPanel;
 
     @DisplayName("TC01 - New group can be created")
     @ParameterizedTest
     @MethodSource("groupCredentialsProvider")
-    void AcheckIfNewGroupCanBeCreated(final String identifier, final String displayName) {
+    void checkIfNewGroupCanBeCreated(final String identifier, final String displayName) {
         //given:
         go.to(Pages.NEW_GROUP_PAGE);
 
@@ -54,7 +55,7 @@ public class ManagingGroupTest {
     @DisplayName("TC02 - Existing group can be edited")
     @ParameterizedTest
     @MethodSource("groupNamesAndIdentifierProvider")
-    void BcheckIfGroupCanBeEdited(final String identifier, final String newDisplayName) {
+    void checkIfGroupCanBeEdited(final String identifier, final String newDisplayName) {
         // todo: getting stale element exception
         //given:
         go.toConcretePage(Pages.GROUP_EDIT_PAGE, identifier);
@@ -71,7 +72,7 @@ public class ManagingGroupTest {
     @DisplayName("TC03 - Existing group can be removed")
     @ParameterizedTest
     @MethodSource("groupToRemoveProvider")
-    void CcheckIfGroupCanBeRemoved(final String displayName, final String identifier) {
+    void checkIfGroupCanBeRemoved(final String displayName, final String identifier) {
         //given:
         go.to(Pages.BROWSE_GROUPS_PANEL);
 
@@ -85,11 +86,11 @@ public class ManagingGroupTest {
     @DisplayName("TC04 - Existing group can be removed permanently")
     @ParameterizedTest
     @MethodSource("permanentRemoveGroupProvider")
-    void DcheckIfGroupCanBeRemovedPermanently(final String displayName, final String identifier) {
+    void checkIfGroupCanBeRemovedPermanently(final String displayName, final String identifier) {
         // TC04 looks like TC03 but relations between groups are different
-        // todo: getting stale element exception
         //given:
         go.to(Pages.BROWSE_GROUPS_PANEL);
+        System.out.println(browseGroupsPanel.checkIfGroupOnList(displayName, identifier));
 
         //when:
         browseGroupsPanel.removeGroup(displayName, identifier);
@@ -101,6 +102,7 @@ public class ManagingGroupTest {
     @BeforeEach
     void beforeEach() {
         go.to(Pages.ADMIN_TOOLS_GROUPS_PAGE);
+        browseGroupsPanel = new BrowseGroupsPanel(driver, wait);
     }
 
     @BeforeAll
@@ -118,7 +120,6 @@ public class ManagingGroupTest {
         LogInPage logInPage = new LogInPage(driver, wait);
         logInPage.logUser(userConfLoader.getUsername(), userConfLoader.getUserPassword());
 
-        browseGroupsPanel = new BrowseGroupsPanel(driver, wait);
     }
 
     @AfterAll
