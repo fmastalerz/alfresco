@@ -30,14 +30,11 @@ public class BrowseGroupsPanel extends PageObject{
         String groupFullName = String.format("%s (%s)", displayName, identifier);
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(groupsTableLocator));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(groupsNamesSpansLocator));
 
         driver.navigate().refresh();
-        List<WebElement> groups = driver.findElements(groupsNamesSpansLocator);
 
-        System.out.println(groups.size());
-        groups.stream().forEach(group -> System.out.println(group.getText()));
-        System.out.println();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(groupsNamesSpansLocator));
+        List<WebElement> groups = driver.findElements(groupsNamesSpansLocator);
 
         return groups.stream().anyMatch(group -> group.getText().equals(groupFullName));
     }
