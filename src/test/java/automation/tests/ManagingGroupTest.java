@@ -111,9 +111,7 @@ public class ManagingGroupTest {
 
         UserConfigLoader userConfLoader = new UserConfigLoader("user");
 
-        LogInPage logInPage = new LogInPage(driver, wait);
-        logInPage.logUser(userConfLoader.getUsername(), userConfLoader.getUserPassword());
-
+        new LogInPage(driver, wait).logUser(userConfLoader.getUsername(), userConfLoader.getUserPassword());
     }
 
     @AfterAll

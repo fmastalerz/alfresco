@@ -48,6 +48,64 @@ public class BrowseGroupsPanel extends PageObject{
         clickConfirmDeleteButton();
     }
 
+    public void addUserToGroup(String displayName, String identifier, String username) {
+        //todo: 1.check for tableWithUsers, 2.'mark it', 3.proceed adding user,
+        // 4.after check that table can't be found, 5.find it again, 6.search for user
+
+        // click on group to which user will be added
+        findGroupSpan(displayName, identifier);
+        clickOnGroupSpan();
+
+        // wait for add user locator
+
+        By addUserButtonLocator = By.className("groups-adduser-button");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(addUserButtonLocator));
+
+        // wait and click add user button
+        WebElement addGroupButton = driver.findElement(addUserButtonLocator);
+        wait.until(ExpectedConditions.visibilityOf(addGroupButton));
+        jsExecutor.executeScript("arguments[0].click()", addGroupButton);
+
+        //enter username into search field
+        By searchUserInputFieldLocator = By.xpath("//input[@id='page_x002e_ctool_x002e_admin-console_x0023_default-search-peoplefinder-search-text']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchUserInputFieldLocator));
+        driver.findElement(searchUserInputFieldLocator).sendKeys(username);
+
+        //click search button
+        By searchButtonLocator = By.id("page_x002e_ctool_x002e_admin-console_x0023_default-search-peoplefinder-search-button-button");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchButtonLocator));
+        driver.findElement(searchButtonLocator).click();
+
+        //click add button
+        By addButtonUILocator = By.xpath("//span[@class='yui-button yui-button-button']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(addButtonUILocator));
+        jsExecutor.executeScript("arguments[0].click()", driver.findElement(addButtonUILocator));
+
+
+        // getting table with users
+        By tableBodyLocator = By.className("yui-columnbrowser-column-body");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBodyLocator));
+
+        By spanWithUserLocator = By.xpath("//a[@class='yui-columnbrowser-item groups-item-user']");
+
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        List<WebElement> users = driver.findElements(spanWithUserLocator);
+        System.out.println(users.size());
+        users.stream().forEach(user -> System.out.println(user.getText()));
+
+    }
+
+    private void clickOnGroupSpan() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(exactGroupSpanLocator));
+        jsExecutor.executeScript("arguments[0].click();", driver.findElement(exactGroupSpanLocator));
+    }
+
     private void clickConfirmDeleteButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(deleteGroupButtonLocator));
         driver.findElement(deleteGroupButtonLocator).click();
@@ -69,4 +127,6 @@ public class BrowseGroupsPanel extends PageObject{
                 displayName, identifier );
         removeGroupButtonLocator = By.xpath(pathToButton);
     }
+
+
 }
